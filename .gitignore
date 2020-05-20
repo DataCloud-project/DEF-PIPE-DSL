@@ -1,0 +1,6 @@
+.metadata/
+workflow.ui/bin/
+workflow/bin/
+workflow.ide/bin/
+workflow.tests/test-bin/
+workflow.ui.tests/test-bin/

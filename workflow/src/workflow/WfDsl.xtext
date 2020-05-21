@@ -1,0 +1,70 @@
+grammar workflow.WfDsl with org.eclipse.xtext.common.Terminals
+
+generate wfDsl "http://www.WfDsl.workflow"
+
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+WFModel:
+	workflow+=Workflow*
+;
+	
+Workflow:
+	'workflow' 
+	name = ID 
+	('extends' base = [Workflow])? 
+	'{'		
+		('communicationMedium:' communicationMedium = CommunicationMedium)
+		('parameters:' '[' (params += Parameter (',' params += Parameter)*)? ']')?		
+		('steps:' '[' steps += Step (',' steps += Step)* ']')		
+	'}'
+;
+
+Step:	
+	'{'
+		name = ID		
+		('parameters:' '[' (params += Parameter (',' params += Parameter)*)? ']')?		
+		('previous:' ('no' | previous=[Step]))?
+		('trigger:' trigger = Trigger)
+	'}'
+;
+
+CommunicationMedium:
+	'medium'
+	name = ID
+	type = CommunicationMediumTypes
+;
+
+Trigger:
+	{OneTime}  trigger ?='one-time' | 	
+	{Schedule} trigger = Schedule |
+	{External} trigger = ExternalEvent
+;
+
+Schedule:
+	( freqency = INT)?
+;
+
+ExternalEvent:
+	type=STRING
+;
+
+Parameter:
+	name = ID
+	( '=' value = ParameterValueTypes)?
+;
+
+enum CommunicationMediumTypes:
+ MESSAGE_QUEUE | DISTRIBUTED_FILE_SYSTEM | WEB_SERVICE
+;	
+		
+ParameterValueTypes:
+	{StringType} value = STRING |
+	{IntType} value = INT |
+	{BoolType} value = BOOL_LITERAL |
+	{Identifier} value = ID
+;
+
+terminal BOOL_LITERAL returns ecore::EBoolean:
+	'true' | 'false' 
+;

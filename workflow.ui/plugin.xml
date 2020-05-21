@@ -4,48 +4,48 @@
 	<extension
 		point="org.eclipse.ui.editors">
 		<editor
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
-			extensions="wdsl"
-			id="workflow.WorkflowDSL"
-			name="WorkflowDSL Editor">
+			extensions="wfdsl"
+			id="workflow.WfDsl"
+			name="WfDsl Editor">
 		</editor>
 	</extension>
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
 			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
 			<activeWhen>
 				<reference
-					definitionId="workflow.WorkflowDSL.Editor.opened">
+					definitionId="workflow.WfDsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<handler
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-			commandId="workflow.WorkflowDSL.validate">
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="workflow.WfDsl.validate">
 			<activeWhen>
 				<reference
-					definitionId="workflow.WorkflowDSL.Editor.opened">
+					definitionId="workflow.WfDsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
 			<activeWhen>
-				<reference definitionId="workflow.WorkflowDSL.Editor.opened" />
+				<reference definitionId="workflow.WfDsl.Editor.opened" />
 			</activeWhen>
 		</handler>
 		<handler
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
 			<activeWhen>
 				<and>
-					<reference definitionId="workflow.WorkflowDSL.XtextEditor.opened" />
+					<reference definitionId="workflow.WfDsl.XtextEditor.opened" />
 					<iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -54,22 +54,22 @@
 		</handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
-		<definition id="workflow.WorkflowDSL.Editor.opened">
+		<definition id="workflow.WfDsl.Editor.opened">
 			<and>
 				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
-						value="workflow.WorkflowDSL"
+						value="workflow.WfDsl"
 						forcePluginActivation="true"/>
 				</with>
 			</and>
 		</definition>
-		<definition id="workflow.WorkflowDSL.XtextEditor.opened">
+		<definition id="workflow.WfDsl.XtextEditor.opened">
 			<and>
 				<reference definitionId="isXtextEditorActive"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
-						value="workflow.WorkflowDSL"
+						value="workflow.WfDsl"
 						forcePluginActivation="true"/>
 				</with>
 			</and>
@@ -78,33 +78,33 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="workflow.WorkflowDSL"
-			name="WorkflowDSL">
-			<keywordReference id="workflow.ui.keyword_WorkflowDSL"/>
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="workflow.WfDsl"
+			name="WfDsl">
+			<keywordReference id="workflow.ui.keyword_WfDsl"/>
 		</page>
 		<page
-			category="workflow.WorkflowDSL"
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-			id="workflow.WorkflowDSL.coloring"
+			category="workflow.WfDsl"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="workflow.WfDsl.coloring"
 			name="Syntax Coloring">
-			<keywordReference id="workflow.ui.keyword_WorkflowDSL"/>
+			<keywordReference id="workflow.ui.keyword_WfDsl"/>
 		</page>
 		<page
-			category="workflow.WorkflowDSL"
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-			id="workflow.WorkflowDSL.templates"
+			category="workflow.WfDsl"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="workflow.WfDsl.templates"
 			name="Templates">
-			<keywordReference id="workflow.ui.keyword_WorkflowDSL"/>
+			<keywordReference id="workflow.ui.keyword_WfDsl"/>
 		</page>
 	</extension>
 	<extension
 			point="org.eclipse.ui.propertyPages">
 		<page
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="workflow.WorkflowDSL"
-			name="WorkflowDSL">
-			<keywordReference id="workflow.ui.keyword_WorkflowDSL"/>
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="workflow.WfDsl"
+			name="WfDsl">
+			<keywordReference id="workflow.ui.keyword_WfDsl"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -114,14 +114,14 @@
 	<extension
 		point="org.eclipse.ui.keywords">
 		<keyword
-			id="workflow.ui.keyword_WorkflowDSL"
-			label="WorkflowDSL"/>
+			id="workflow.ui.keyword_WfDsl"
+			label="WfDsl"/>
 	</extension>
 	<extension
 		point="org.eclipse.ui.commands">
 		<command
 			description="Trigger expensive validation"
-			id="workflow.WorkflowDSL.validate"
+			id="workflow.WfDsl.validate"
 			name="Validate">
 		</command>
 		<!-- copy qualified name -->
@@ -142,12 +142,12 @@
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.edit">
 			<command
-				commandId="workflow.WorkflowDSL.validate"
+				commandId="workflow.WfDsl.validate"
 				style="push"
 				tooltip="Trigger expensive validation">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="workflow.WorkflowDSL.Editor.opened">
+						definitionId="workflow.WfDsl.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -157,7 +157,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="workflow.WorkflowDSL.Editor.opened" />
+					<reference definitionId="workflow.WfDsl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -165,7 +165,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="workflow.WorkflowDSL.Editor.opened" />
+					<reference definitionId="workflow.WfDsl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -174,7 +174,7 @@
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
 					<and>
-						<reference definitionId="workflow.WorkflowDSL.XtextEditor.opened" />
+						<reference definitionId="workflow.WfDsl.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -187,7 +187,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="workflow.WorkflowDSL.Editor.opened">
+					<reference definitionId="workflow.WfDsl.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -195,11 +195,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
 			commandId="org.eclipse.xtext.ui.editor.FindReferences">
 			<activeWhen>
 				<reference
-					definitionId="workflow.WorkflowDSL.Editor.opened">
+					definitionId="workflow.WfDsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -207,9 +207,9 @@
 	<extension point="org.eclipse.core.contenttype.contentTypes">
 		<content-type
 			base-type="org.eclipse.core.runtime.text"
-			file-extensions="wdsl"
-			id="workflow.WorkflowDSL.contenttype"
-			name="WorkflowDSL File"
+			file-extensions="wfdsl"
+			id="workflow.WfDsl.contenttype"
+			name="WfDsl File"
 			priority="normal">
 		</content-type>
 	</extension>
@@ -217,68 +217,68 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
-			type="wdsl">
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			type="wfdsl">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-			uriExtension="wdsl">
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			uriExtension="wfdsl">
 		</resourceServiceProvider>
 	</extension>
-	<!-- marker definitions for workflow.WorkflowDSL -->
+	<!-- marker definitions for workflow.WfDsl -->
 	<extension
-			id="workflowdsl.check.fast"
-			name="WorkflowDSL Problem"
+			id="wfdsl.check.fast"
+			name="WfDsl Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.fast"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="workflowdsl.check.normal"
-			name="WorkflowDSL Problem"
+			id="wfdsl.check.normal"
+			name="WfDsl Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.normal"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="workflowdsl.check.expensive"
-			name="WorkflowDSL Problem"
+			id="wfdsl.check.expensive"
+			name="WfDsl Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.expensive"/>
 		<persistent value="true"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="workflow.WorkflowDSL"
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
-			id="workflow.WorkflowDSL.validator.preferencePage"
+			category="workflow.WfDsl"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
+			id="workflow.WfDsl.validator.preferencePage"
 			name="Errors/Warnings">
-			<keywordReference id="workflow.ui.keyword_WorkflowDSL"/>
+			<keywordReference id="workflow.ui.keyword_WfDsl"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
-			fileExtensions="wdsl"/>
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			fileExtensions="wfdsl"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="workflow.WorkflowDSL"
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="workflow.WorkflowDSL.compiler.preferencePage"
+			category="workflow.WfDsl"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="workflow.WfDsl.compiler.preferencePage"
 			name="Compiler">
-			<keywordReference id="workflow.ui.keyword_WorkflowDSL"/>
+			<keywordReference id="workflow.ui.keyword_WfDsl"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.propertyPages">
 		<page
-			category="workflow.WorkflowDSL"
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="workflow.WorkflowDSL.compiler.propertyPage"
+			category="workflow.WfDsl"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="workflow.WfDsl.compiler.propertyPage"
 			name="Compiler">
-			<keywordReference id="workflow.ui.keyword_WorkflowDSL"/>
+			<keywordReference id="workflow.ui.keyword_WfDsl"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -289,20 +289,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="workflow.WorkflowDSL.OpenGeneratedCode"
+				id="workflow.WfDsl.OpenGeneratedCode"
 				style="push">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="workflow.WorkflowDSL.Editor.opened" />
+					<reference definitionId="workflow.WfDsl.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 			<activeWhen>
-				<reference definitionId="workflow.WorkflowDSL.Editor.opened" />
+				<reference definitionId="workflow.WfDsl.Editor.opened" />
 			</activeWhen>
 		</handler>
 	</extension>
@@ -310,11 +310,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="workflow.WorkflowDSL.Editor.opened">
+					definitionId="workflow.WfDsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -334,33 +334,33 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="workflow.WorkflowDSL.Editor.opened"/>
+					<reference definitionId="workflow.WfDsl.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-	<!-- quickfix marker resolution generator for workflow.WorkflowDSL -->
+	<!-- quickfix marker resolution generator for workflow.WfDsl -->
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="workflow.ui.workflowdsl.check.fast">
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="workflow.ui.wfdsl.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="workflow.ui.workflowdsl.check.normal">
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="workflow.ui.wfdsl.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="workflow.ui.workflowdsl.check.expensive">
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="workflow.ui.wfdsl.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
@@ -370,11 +370,11 @@
 	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="workflow.WorkflowDSL.Editor.opened">
+					definitionId="workflow.WfDsl.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -386,7 +386,7 @@
 				style="push">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="workflow.WorkflowDSL.Editor.opened">
+						definitionId="workflow.WfDsl.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -394,40 +394,40 @@
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="workflow.WorkflowDSL"
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="workflow.WorkflowDSL.refactoring"
+			category="workflow.WfDsl"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="workflow.WfDsl.refactoring"
 			name="Refactoring">
-			<keywordReference id="workflow.ui.keyword_WorkflowDSL"/>
+			<keywordReference id="workflow.ui.keyword_WfDsl"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
-		<viewer id="workflow.WorkflowDSL.compare.contentViewers"
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-			extensions="wdsl">
+		<viewer id="workflow.WfDsl.compare.contentViewers"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="wfdsl">
 		</viewer>
 		<contentTypeBinding
-			contentTypeId="workflow.WorkflowDSL.contenttype"
-			contentViewerId="workflow.WorkflowDSL.compare.contentViewers" />
+			contentTypeId="workflow.WfDsl.contenttype"
+			contentViewerId="workflow.WfDsl.compare.contentViewers" />
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
-		<viewer id="workflow.WorkflowDSL.compare.contentMergeViewers"
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-			extensions="wdsl" label="WorkflowDSL Compare">
+		<viewer id="workflow.WfDsl.compare.contentMergeViewers"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="wfdsl" label="WfDsl Compare">
 		</viewer>
 		<contentTypeBinding
-			contentTypeId="workflow.WorkflowDSL.contenttype"
-			contentMergeViewerId="workflow.WorkflowDSL.compare.contentMergeViewers" />
+			contentTypeId="workflow.WfDsl.contenttype"
+			contentMergeViewerId="workflow.WfDsl.compare.contentMergeViewers" />
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
-		<provider id="workflow.WorkflowDSL.editors.documentProviders"
-			class="workflow.ui.WorkflowDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-			extensions="wdsl">
+		<provider id="workflow.WfDsl.editors.documentProviders"
+			class="workflow.ui.WfDslExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+			extensions="wfdsl">
 		</provider>
 	</extension>
 	<extension point="org.eclipse.team.core.fileTypes">
 		<fileTypes
-			extension="wdsl"
+			extension="wfdsl"
 			type="text">
 		</fileTypes>
 	</extension>

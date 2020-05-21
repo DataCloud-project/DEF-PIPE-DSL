@@ -13,8 +13,8 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
 import org.osgi.framework.BundleContext;
-import workflow.WorkflowDSLRuntimeModule;
-import workflow.ui.WorkflowDSLUiModule;
+import workflow.WfDslRuntimeModule;
+import workflow.ui.WfDslUiModule;
 
 /**
  * This class was generated. Customizations should only happen in a newly
@@ -23,7 +23,7 @@ import workflow.ui.WorkflowDSLUiModule;
 public class WorkflowActivator extends AbstractUIPlugin {
 
 	public static final String PLUGIN_ID = "workflow.ui";
-	public static final String WORKFLOW_WORKFLOWDSL = "workflow.WorkflowDSL";
+	public static final String WORKFLOW_WFDSL = "workflow.WfDsl";
 	
 	private static final Logger logger = Logger.getLogger(WorkflowActivator.class);
 	
@@ -73,15 +73,15 @@ public class WorkflowActivator extends AbstractUIPlugin {
 	}
 	
 	protected com.google.inject.Module getRuntimeModule(String grammar) {
-		if (WORKFLOW_WORKFLOWDSL.equals(grammar)) {
-			return new WorkflowDSLRuntimeModule();
+		if (WORKFLOW_WFDSL.equals(grammar)) {
+			return new WfDslRuntimeModule();
 		}
 		throw new IllegalArgumentException(grammar);
 	}
 	
 	protected com.google.inject.Module getUiModule(String grammar) {
-		if (WORKFLOW_WORKFLOWDSL.equals(grammar)) {
-			return new WorkflowDSLUiModule(this);
+		if (WORKFLOW_WFDSL.equals(grammar)) {
+			return new WfDslUiModule(this);
 		}
 		throw new IllegalArgumentException(grammar);
 	}

@@ -15,15 +15,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: workflow.workflowDSL.impl,
- workflow.workflowDSL.util,
- workflow,
+Export-Package: workflow,
  workflow.serializer,
  workflow.scoping,
- workflow.workflowDSL,
+ workflow.wfDsl.util,
  workflow.parser.antlr.internal,
  workflow.validation,
  workflow.parser.antlr,
+ workflow.wfDsl.impl,
  workflow.generator,
- workflow.services
+ workflow.services,
+ workflow.wfDsl
 Import-Package: org.apache.log4j

@@ -1,12 +1,11 @@
 grammar workflow.WfDsl with org.eclipse.xtext.common.Terminals
-
+ 
 generate wfDsl "http://www.WfDsl.workflow"
-
-
+ 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-
+ 
 WFModel:
-	workflow+=Workflow*
+	Workflow += Workflow*
 ;
 	
 Workflow:
@@ -15,48 +14,88 @@ Workflow:
 	('extends' base = [Workflow])? 
 	'{'		
 		('communicationMedium:' communicationMedium = CommunicationMedium)
-		('parameters:' '[' (params += Parameter (',' params += Parameter)*)? ']')?		
+		('parameters:' '[' (params += InputParameter (',' params += InputParameter)*)? ']')?		
 		('steps:' '[' steps += Step (',' steps += Step)* ']')		
 	'}'
 ;
-
+ 
 Step:	
-	'{'
-		name = ID		
-		('parameters:' '[' (params += Parameter (',' params += Parameter)*)? ']')?		
-		('previous:' ('no' | previous=[Step]))?
+	'step' 
+	name = ID 
+	'{'	
+		('parameters:' '[' (params += InputParameter (',' params += InputParameter)*)? ']')?	
+		('environmentVariables:' '[' (environment += EnvironmentVariable (',' environment += EnvironmentVariable)*)? ']')?
+		('previous:' ('none' | previous=[Step]))?
 		('trigger:' trigger = Trigger)
+		('implementation:' implementation = StepImplementation)
 	'}'
 ;
-
+ 
 CommunicationMedium:
 	'medium'
 	name = ID
 	type = CommunicationMediumTypes
 ;
 
+StepImplementation:
+	{StepImplementation}
+	'step-implementation'
+; 
+
 Trigger:
-	{OneTime}  trigger ?='one-time' | 	
-	{Schedule} trigger = Schedule |
-	{External} trigger = ExternalEvent
+	OneTimeTrigger | 	
+	RecurrenceTrigger |
+	ExternalEventTrigger
+;
+
+OneTimeTrigger:
+	{OneTimeTrigger} 
+	'one-time'
+	(startTime = STRING)? // YYYY-MM-DDThh:mm:ss
+; 
+
+RecurrenceTrigger:
+	'recurrence'
+	'{'
+	
+		('frequency:' frequency = TimeUnits)
+		('interval:' interval = INT)
+		('startTime:' startTime = STRING)? // YYYY-MM-DDThh:mm:ss
+		('schedule:' schedule = Schedule)?
+		('cron:' cron = STRING)? //Cron expressions for advanced schedules
+	'}'
+;
+
+ 
+ExternalEventTrigger:
+	{ExternalEventTrigger}
+	'external-event'
 ;
 
 Schedule:
-	( freqency = INT)?
+	{Schedule} 
+	'schedule'
+	'{'
+         // iff frequency is Day or Week. comma separated.
+         ('hours:' hours = STRING)? 
+         // iff frequency is Day or Week. comma separated.
+         ('minutes:' minutes = STRING )? 
+         // iff frequency is Week. comma separated.
+         ('weekDays:' weekdays = WeekDays )?
+      '}'
 ;
 
-ExternalEvent:
-	type=STRING
-;
 
-Parameter:
+InputParameter:	
 	name = ID
 	( '=' value = ParameterValueTypes)?
 ;
 
-enum CommunicationMediumTypes:
- MESSAGE_QUEUE | DISTRIBUTED_FILE_SYSTEM | WEB_SERVICE
-;	
+EnvironmentVariable:
+	name = ID
+	 '=' value = STRING
+;
+	
 		
 ParameterValueTypes:
 	{StringType} value = STRING |
@@ -65,6 +104,18 @@ ParameterValueTypes:
 	{Identifier} value = ID
 ;
 
+enum CommunicationMediumTypes:
+ 	MESSAGE_QUEUE | DISTRIBUTED_FILE_SYSTEM | WEB_SERVICE
+;
+
+enum TimeUnits:
+	Second | Minute | Hour | Day | Week | Month
+;
+
+enum WeekDays:
+	Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+;
+ 
 terminal BOOL_LITERAL returns ecore::EBoolean:
 	'true' | 'false' 
 ;

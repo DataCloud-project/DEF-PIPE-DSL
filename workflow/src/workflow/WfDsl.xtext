@@ -5,8 +5,7 @@ generate wfDsl "http://www.WfDsl.workflow"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
  
 WFModel:
-	Workflow += Workflow*
-;
+	Workflow += Workflow*;
 	
 Workflow:
 	'workflow' 
@@ -14,108 +13,70 @@ Workflow:
 	('extends' base = [Workflow])? 
 	'{'		
 		('communicationMedium:' communicationMedium = CommunicationMedium)
-		('parameters:' '[' (params += InputParameter (',' params += InputParameter)*)? ']')?		
-		('steps:' '[' steps += Step (',' steps += Step)* ']')		
-	'}'
-;
+		('parameters:' (params += InputParameter (',' params += InputParameter)*)?)?		
+		('steps:' ('-' steps += Step ('-' steps += Step)*)+)		
+	'}';
  
 Step:	
 	'step' 
 	name = ID 
-	'{'	
-		('parameters:' '[' (params += InputParameter (',' params += InputParameter)*)? ']')?	
-		('environmentVariables:' '[' (environment += EnvironmentVariable (',' environment += EnvironmentVariable)*)? ']')?
-		('previous:' ('none' | previous=[Step]))?
-		('trigger:' trigger = Trigger)
+		('triggers:' (triggers += Trigger (',' triggers += Trigger)*)+ )
 		('implementation:' implementation = StepImplementation)
-	'}'
-;
+		('parameters:' (params += InputParameter (',' params += InputParameter)*)?)?		
+		('environment:' (environment += EnvironmentVariable (',' environment += EnvironmentVariable)*)?)?
+		('previous:' ('none' | previous=[Step]))?;
+
  
 CommunicationMedium:
 	'medium'
-	name = ID
-	type = CommunicationMediumTypes
-;
+	type = CommunicationMediumTypes;
 
 StepImplementation:
 	{StepImplementation}
-	'step-implementation'
-; 
+	'step-implementation'; 
 
 Trigger:
 	OneTimeTrigger | 	
-	RecurrenceTrigger |
-	ExternalEventTrigger
-;
+	ScheduleTrigger |
+	ExternalEventTrigger;
 
 OneTimeTrigger:
 	{OneTimeTrigger} 
 	'one-time'
-	(startTime = STRING)? // YYYY-MM-DDThh:mm:ss
-; 
+	(startTime = STRING)?; // YYYY-MM-DDThh:mm:ss
 
-RecurrenceTrigger:
-	'recurrence'
-	'{'
-	
-		('frequency:' frequency = TimeUnits)
-		('interval:' interval = INT)
-		('startTime:' startTime = STRING)? // YYYY-MM-DDThh:mm:ss
-		('schedule:' schedule = Schedule)?
-		('cron:' cron = STRING)? //Cron expressions for advanced schedules
-	'}'
-;
+ScheduleTrigger:
+	{ScheduleTrigger} 
+	'schedule'
+		('frequency:' frequency = TimeUnits)?
+		('interval:' interval = INT)?
+		('start-time:' startTime = STRING)? // YYYY-MM-DDThh:mm:ss
+		('cron:' cron = STRING)?; //Cron expressions for advanced schedules
 
  
 ExternalEventTrigger:
 	{ExternalEventTrigger}
-	'external-event'
-;
-
-Schedule:
-	{Schedule} 
-	'schedule'
-	'{'
-         // iff frequency is Day or Week. comma separated.
-         ('hours:' hours = STRING)? 
-         // iff frequency is Day or Week. comma separated.
-         ('minutes:' minutes = STRING )? 
-         // iff frequency is Week. comma separated.
-         ('weekDays:' weekdays = WeekDays )?
-      '}'
-;
-
+	'external-event';
 
 InputParameter:	
-	name = ID
-	( '=' value = ParameterValueTypes)?
-;
+	(name = ID ( '=' value = ParameterValueTypes)?) | 
+	value = ParameterValueTypes ;
 
 EnvironmentVariable:
 	name = ID
-	 '=' value = STRING
-;
-	
-		
+	'=' value = STRING;
+			
 ParameterValueTypes:
 	{StringType} value = STRING |
 	{IntType} value = INT |
 	{BoolType} value = BOOL_LITERAL |
-	{Identifier} value = ID
-;
+	{Identifier} value = ID;
 
 enum CommunicationMediumTypes:
- 	MESSAGE_QUEUE | DISTRIBUTED_FILE_SYSTEM | WEB_SERVICE
-;
+ 	MessageQueue | DistributedFileSystem | WebService;
 
 enum TimeUnits:
-	Second | Minute | Hour | Day | Week | Month
-;
-
-enum WeekDays:
-	Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
-;
+	Second | Minute | Hour | Day | Week | Month;
  
 terminal BOOL_LITERAL returns ecore::EBoolean:
-	'true' | 'false' 
-;
+	'true' | 'false';

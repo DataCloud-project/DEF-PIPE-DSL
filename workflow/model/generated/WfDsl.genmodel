@@ -7,9 +7,9 @@
   <genPackages prefix="WfDsl" basePackage="workflow" disposableProviderFactory="true"
       fileExtensions="wfdsl" ecorePackage="WfDsl.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="WfDsl.ecore#//CommunicationMediumTypes">
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/MESSAGE_QUEUE"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/DISTRIBUTED_FILE_SYSTEM"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/WEB_SERVICE"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/MessageQueue"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/DistributedFileSystem"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/WebService"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="WfDsl.ecore#//TimeUnits">
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/Second"/>
@@ -18,15 +18,6 @@
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/Day"/>
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/Week"/>
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/Month"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="WfDsl.ecore#//WeekDays">
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//WeekDays/Monday"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//WeekDays/Tuesday"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//WeekDays/Wednesday"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//WeekDays/Thursday"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//WeekDays/Friday"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//WeekDays/Saturday"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//WeekDays/Sunday"/>
     </genEnums>
     <genClasses ecoreClass="WfDsl.ecore#//WFModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//WFModel/Workflow"/>
@@ -40,14 +31,13 @@
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//Step">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Step/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/triggers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/implementation"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/environment"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/previous"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/trigger"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/implementation"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//CommunicationMedium">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//CommunicationMedium/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//CommunicationMedium/type"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//StepImplementation"/>
@@ -55,19 +45,13 @@
     <genClasses ecoreClass="WfDsl.ecore#//OneTimeTrigger">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//OneTimeTrigger/startTime"/>
     </genClasses>
-    <genClasses ecoreClass="WfDsl.ecore#//RecurrenceTrigger">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//RecurrenceTrigger/frequency"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//RecurrenceTrigger/interval"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//RecurrenceTrigger/startTime"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//RecurrenceTrigger/schedule"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//RecurrenceTrigger/cron"/>
+    <genClasses ecoreClass="WfDsl.ecore#//ScheduleTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ScheduleTrigger/frequency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ScheduleTrigger/interval"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ScheduleTrigger/startTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ScheduleTrigger/cron"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//ExternalEventTrigger"/>
-    <genClasses ecoreClass="WfDsl.ecore#//Schedule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Schedule/hours"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Schedule/minutes"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Schedule/weekdays"/>
-    </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//InputParameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//InputParameter/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//InputParameter/value"/>
@@ -77,17 +61,5 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//EnvironmentVariable/value"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//ParameterValueTypes"/>
-    <genClasses ecoreClass="WfDsl.ecore#//StringType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//StringType/value"/>
-    </genClasses>
-    <genClasses ecoreClass="WfDsl.ecore#//IntType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//IntType/value"/>
-    </genClasses>
-    <genClasses ecoreClass="WfDsl.ecore#//BoolType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//BoolType/value"/>
-    </genClasses>
-    <genClasses ecoreClass="WfDsl.ecore#//Identifier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Identifier/value"/>
-    </genClasses>
   </genPackages>
 </genmodel:GenModel>

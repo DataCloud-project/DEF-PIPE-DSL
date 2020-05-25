@@ -17,18 +17,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Step">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
+        eType="#//Trigger" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//InputParameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="environment" upperBound="-1"
         eType="#//EnvironmentVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previous" eType="#//Step"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="trigger" eType="#//Trigger"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StepImplementation"/>
@@ -36,20 +35,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="OneTimeTrigger" eSuperTypes="#//Trigger">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RecurrenceTrigger" eSuperTypes="#//Trigger">
+  <eClassifiers xsi:type="ecore:EClass" name="ScheduleTrigger" eSuperTypes="#//Trigger">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="frequency" eType="#//TimeUnits"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="schedule" eType="#//Schedule"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cron" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExternalEventTrigger" eSuperTypes="#//Trigger"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Schedule">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hours" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minutes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="weekdays" eType="#//WeekDays"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputParameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ParameterValueTypes"
@@ -61,9 +53,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterValueTypes"/>
   <eClassifiers xsi:type="ecore:EEnum" name="CommunicationMediumTypes">
-    <eLiterals name="MESSAGE_QUEUE" literal="MESSAGE_QUEUE"/>
-    <eLiterals name="DISTRIBUTED_FILE_SYSTEM" value="1" literal="DISTRIBUTED_FILE_SYSTEM"/>
-    <eLiterals name="WEB_SERVICE" value="2" literal="WEB_SERVICE"/>
+    <eLiterals name="MessageQueue" literal="MessageQueue"/>
+    <eLiterals name="DistributedFileSystem" value="1" literal="DistributedFileSystem"/>
+    <eLiterals name="WebService" value="2" literal="WebService"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TimeUnits">
     <eLiterals name="Second" literal="Second"/>
@@ -72,26 +64,5 @@
     <eLiterals name="Day" value="3" literal="Day"/>
     <eLiterals name="Week" value="4" literal="Week"/>
     <eLiterals name="Month" value="5" literal="Month"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="WeekDays">
-    <eLiterals name="Monday" literal="Monday"/>
-    <eLiterals name="Tuesday" value="1" literal="Tuesday"/>
-    <eLiterals name="Wednesday" value="2" literal="Wednesday"/>
-    <eLiterals name="Thursday" value="3" literal="Thursday"/>
-    <eLiterals name="Friday" value="4" literal="Friday"/>
-    <eLiterals name="Saturday" value="5" literal="Saturday"/>
-    <eLiterals name="Sunday" value="6" literal="Sunday"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringType" eSuperTypes="#//ParameterValueTypes">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntType" eSuperTypes="#//ParameterValueTypes">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BoolType" eSuperTypes="#//ParameterValueTypes">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Identifier" eSuperTypes="#//ParameterValueTypes">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

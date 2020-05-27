@@ -1,0 +1,56 @@
+workflow moviesWorflow
+{
+	communicationMedium: medium MessageQueue
+	parameters: KUBEMQ_HOST=kubemq
+	steps:		
+		- step read_zip			
+			triggers: one-time, external-event		
+			implementation: step-implementation
+			parameters: 60, 'param2'
+			environment: 
+				KUBEMQ_HOST='http://localhost:4599/'
+			
+		- step unzip 	
+			triggers: 
+				external-event, 
+				schedule 
+					frequency: Day 
+					interval: 1 
+					startTime: '2020-05-31T22:30:59'	
+			implementation: step-implementation
+			parameters: 60
+			environment: 
+				KUBEMQ_HOST='http://localhost:4599/'
+			
+		- step split 	
+			triggers: 
+				external-event, 
+				schedule 
+					frequency: Minute 
+					interval: 30 	
+			implementation: step-implementation
+			parameters: 60
+			environment: 
+				KUBEMQ_HOST='http://localhost:4599/'
+			
+		- step tsv2csv 	
+			triggers:
+				external-event,   
+				schedule 
+					frequency: Second 
+					interval: 45 	
+			implementation: step-implementation
+			parameters: 60
+			environment: 
+				KUBEMQ_HOST='http://localhost:4599/'
+		
+		- step transform
+			triggers:
+				external-event,   
+				schedule 
+					cron: "0 15,30,45 * ? * *"
+			implementation: step-implementation
+			parameters: 60
+			environment: 
+				KUBEMQ_HOST='http://localhost:4599/'
+}

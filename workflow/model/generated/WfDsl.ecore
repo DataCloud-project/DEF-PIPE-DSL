@@ -53,16 +53,16 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterValueTypes"/>
   <eClassifiers xsi:type="ecore:EEnum" name="CommunicationMediumTypes">
-    <eLiterals name="MessageQueue" literal="MessageQueue"/>
-    <eLiterals name="DistributedFileSystem" value="1" literal="DistributedFileSystem"/>
-    <eLiterals name="WebService" value="2" literal="WebService"/>
+    <eLiterals name="MESSAGE_QUEUE" literal="MESSAGE_QUEUE"/>
+    <eLiterals name="DISTRIBUTED_FILE_SYSTEM" value="1" literal="DISTRIBUTED_FILE_SYSTEM"/>
+    <eLiterals name="WEB_SERVICE" value="2" literal="WEB_SERVICE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TimeUnits">
-    <eLiterals name="Second" literal="Second"/>
-    <eLiterals name="Minute" value="1" literal="Minute"/>
-    <eLiterals name="Hour" value="2" literal="Hour"/>
-    <eLiterals name="Day" value="3" literal="Day"/>
-    <eLiterals name="Week" value="4" literal="Week"/>
-    <eLiterals name="Month" value="5" literal="Month"/>
+    <eLiterals name="SECOND" literal="SECOND"/>
+    <eLiterals name="MINUTE" value="1" literal="MINUTE"/>
+    <eLiterals name="HOUR" value="2" literal="HOUR"/>
+    <eLiterals name="DAY" value="3" literal="DAY"/>
+    <eLiterals name="WEEK" value="4" literal="WEEK"/>
+    <eLiterals name="MONTH" value="5" literal="MONTH"/>
   </eClassifiers>
 </ecore:EPackage>

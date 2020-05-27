@@ -73,10 +73,10 @@ ParameterValueTypes:
 	{Identifier} value = ID;
 
 enum CommunicationMediumTypes:
- 	MessageQueue | DistributedFileSystem | WebService;
+ 	MESSAGE_QUEUE | DISTRIBUTED_FILE_SYSTEM | WEB_SERVICE;
 
 enum TimeUnits:
-	Second | Minute | Hour | Day | Week | Month;
+	SECOND | MINUTE | HOUR | DAY | WEEK | MONTH;
  
 terminal BOOL_LITERAL returns ecore::EBoolean:
 	'true' | 'false';

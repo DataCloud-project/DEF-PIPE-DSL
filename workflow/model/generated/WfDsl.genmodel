@@ -7,17 +7,17 @@
   <genPackages prefix="WfDsl" basePackage="workflow" disposableProviderFactory="true"
       fileExtensions="wfdsl" ecorePackage="WfDsl.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="WfDsl.ecore#//CommunicationMediumTypes">
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/MessageQueue"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/DistributedFileSystem"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/WebService"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/MESSAGE_QUEUE"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/DISTRIBUTED_FILE_SYSTEM"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//CommunicationMediumTypes/WEB_SERVICE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="WfDsl.ecore#//TimeUnits">
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/Second"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/Minute"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/Hour"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/Day"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/Week"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/Month"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/SECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/MINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/HOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/DAY"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/WEEK"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/MONTH"/>
     </genEnums>
     <genClasses ecoreClass="WfDsl.ecore#//WFModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//WFModel/Workflow"/>

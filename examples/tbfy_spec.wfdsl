@@ -1,4 +1,4 @@
-workflow moviesWorflow
+workflow tbfyDataIngestion
 {
 	communicationMedium: medium MESSAGE_QUEUE
 	parameters: MQ_HOST = kubemq

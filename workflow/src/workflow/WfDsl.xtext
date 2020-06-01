@@ -11,7 +11,7 @@ Workflow:
 	('extends' base = [Workflow])? 
 	'{'		
 		('communicationMedium:' communicationMedium = CommunicationMedium)
-		('parameters:' (params += InputParameter (',' params += InputParameter)*)?)?		
+		('parameters:' (params += InputParameter (',' params += InputParameter)*))?		
 		('steps:' ('-' steps += Step ('-' steps += Step)*)+)		
 	'}';
  
@@ -20,18 +20,20 @@ Step:
 	name = ID 
 		('triggers:' (triggers += Trigger (',' triggers += Trigger)*)+ )
 		('implementation:' implementation = StepImplementation)
-		('parameters:' (params += InputParameter (',' params += InputParameter)*)?)?		
-		('environment:' (environment += EnvironmentVariable (',' environment += EnvironmentVariable)*)?)?
-		('previous:' ('none' | previous=[Step]))?;
-
+		('parameters:' (params += InputParameter (',' params += InputParameter)*))?		
+		('environment:' (environment += EnvironmentVariable (',' environment += EnvironmentVariable)*))?
+		('previous:' ('none' |  (previous += [Step] (',' previous += [Step])*)))?;
  
 CommunicationMedium:
 	'medium'
 	type = CommunicationMediumTypes;
 
 StepImplementation:
-	{StepImplementation}
-	'step-implementation'; 
+	DockerImplementation; //can be extended to other implementations
+	
+DockerImplementation:
+	'docker-implementation'
+	('image:' startTime = STRING);
 
 Trigger:
 	OneTimeTrigger | 	
@@ -41,20 +43,31 @@ Trigger:
 OneTimeTrigger:
 	{OneTimeTrigger} 
 	'one-time'
-	(startTime = STRING)?; // YYYY-MM-DDThh:mm:ss
-
+	(startTime = STRING)?; 
+	
 ScheduleTrigger:
-	{ScheduleTrigger} 
-	'schedule'
-		('frequency:' frequency = TimeUnits)?
-		('interval:' interval = INT)?
-		('start-time:' startTime = STRING)? // YYYY-MM-DDThh:mm:ss
-		('cron:' cron = STRING)?; //Cron expressions for advanced schedules
+	IntervalSchedule | CronSchedule;
+		
 
- 
 ExternalEventTrigger:
 	{ExternalEventTrigger}
 	'external-event';
+	
+IntervalSchedule:
+	{IntervalSchedule}
+	'interval-schedule'
+	('frequency:' frequency = TimeUnits)?
+	('interval:' interval = INT)?
+	('start-time:' startTime = STRING)?;
+
+CronSchedule:
+	{CronSchedule}
+	'cron-schedule'
+	('start-time:' startTime = STRING)?
+	('cron:' cron = STRING)?;
+	
+Parameter:
+	InputParameter | EnvironmentVariable;
 
 InputParameter:	
 	(name = ID ( '=' value = ParameterValueTypes)?) | 
@@ -64,7 +77,7 @@ EnvironmentVariable:
 	name = ID
 	'=' value = STRING;
 			
-ParameterValueTypes:
+ParameterValueTypes: 
 	{StringType} value = STRING |
 	{IntType} value = INT |
 	{BoolType} value = BOOL_LITERAL |

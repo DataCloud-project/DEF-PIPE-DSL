@@ -41,23 +41,31 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//CommunicationMedium/type"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//StepImplementation"/>
+    <genClasses ecoreClass="WfDsl.ecore#//DockerImplementation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//DockerImplementation/startTime"/>
+    </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//Trigger"/>
     <genClasses ecoreClass="WfDsl.ecore#//OneTimeTrigger">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//OneTimeTrigger/startTime"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//ScheduleTrigger">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ScheduleTrigger/frequency"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ScheduleTrigger/interval"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ScheduleTrigger/startTime"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ScheduleTrigger/cron"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//ExternalEventTrigger"/>
+    <genClasses ecoreClass="WfDsl.ecore#//IntervalSchedule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//IntervalSchedule/frequency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//IntervalSchedule/interval"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//CronSchedule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//CronSchedule/cron"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Parameter/name"/>
+    </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//InputParameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//InputParameter/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//InputParameter/value"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//EnvironmentVariable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//EnvironmentVariable/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//EnvironmentVariable/value"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//ParameterValueTypes"/>

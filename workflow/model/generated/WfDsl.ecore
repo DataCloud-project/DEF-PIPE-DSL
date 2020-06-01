@@ -25,30 +25,39 @@
         eType="#//InputParameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="environment" upperBound="-1"
         eType="#//EnvironmentVariable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="previous" eType="#//Step"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previous" unique="false"
+        upperBound="-1" eType="#//Step"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StepImplementation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DockerImplementation" eSuperTypes="#//StepImplementation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Trigger"/>
   <eClassifiers xsi:type="ecore:EClass" name="OneTimeTrigger" eSuperTypes="#//Trigger">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ScheduleTrigger" eSuperTypes="#//Trigger">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="frequency" eType="#//TimeUnits"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cron" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExternalEventTrigger" eSuperTypes="#//Trigger"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InputParameter">
+  <eClassifiers xsi:type="ecore:EClass" name="IntervalSchedule" eSuperTypes="#//ScheduleTrigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="frequency" eType="#//TimeUnits"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CronSchedule" eSuperTypes="#//ScheduleTrigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cron" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputParameter" eSuperTypes="#//Parameter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ParameterValueTypes"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnvironmentVariable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EnvironmentVariable" eSuperTypes="#//Parameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterValueTypes"/>

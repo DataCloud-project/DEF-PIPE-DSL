@@ -19,9 +19,6 @@
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/WEEK"/>
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/MONTH"/>
     </genEnums>
-    <genClasses ecoreClass="WfDsl.ecore#//WFModel">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//WFModel/Workflow"/>
-    </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//Workflow">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Workflow/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Workflow/base"/>

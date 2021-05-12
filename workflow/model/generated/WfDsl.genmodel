@@ -19,12 +19,12 @@
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/WEEK"/>
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/MONTH"/>
     </genEnums>
-    <genClasses ecoreClass="WfDsl.ecore#//Workflow">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Workflow/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Workflow/base"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Workflow/communicationMedium"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Workflow/params"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Workflow/steps"/>
+    <genClasses ecoreClass="WfDsl.ecore#//Pipeline">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Pipeline/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/base"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/communicationMedium"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/params"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/steps"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//Step">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Step/name"/>
@@ -66,5 +66,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//EnvironmentVariable/value"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//ParameterValueTypes"/>
+    <genClasses ecoreClass="WfDsl.ecore#//GenericParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//GenericParameter/parameterName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//GenericParameter/parameterValue"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

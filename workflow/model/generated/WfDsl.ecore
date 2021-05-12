@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="wfDsl" nsURI="http://www.WfDsl.workflow" nsPrefix="wfDsl">
-  <eClassifiers xsi:type="ecore:EClass" name="Workflow">
+  <eClassifiers xsi:type="ecore:EClass" name="Pipeline">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base" eType="#//Workflow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="base" eType="#//Pipeline"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="communicationMedium" eType="#//CommunicationMedium"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
@@ -69,5 +69,9 @@
     <eLiterals name="DAY" value="3" literal="DAY"/>
     <eLiterals name="WEEK" value="4" literal="WEEK"/>
     <eLiterals name="MONTH" value="5" literal="MONTH"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenericParameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterName"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterValue"/>
   </eClassifiers>
 </ecore:EPackage>

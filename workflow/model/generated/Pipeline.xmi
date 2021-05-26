@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wfDsl:Pipeline
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:wfDsl="http://www.WfDsl.workflow"
+    xsi:schemaLocation="http://www.WfDsl.workflow WfDsl.ecore">
+  <steps name="step1"/>
+  <steps name="step2"
+      previous="//@steps.0"/>
+</wfDsl:Pipeline>

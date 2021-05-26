@@ -5,7 +5,7 @@
     <semanticResources>WfDsl.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_7_QWoKQzEeq4eddpwB7mbw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_UdJB0aQ0Eeq4eddpwB7mbw" name="wfDsl class diagram" repPath="#_UdEJUKQ0Eeq4eddpwB7mbw" changeId="113b2808-0730-4096-88b2-16fd78531979">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_UdJB0aQ0Eeq4eddpwB7mbw" name="wfDsl class diagram" repPath="#_UdEJUKQ0Eeq4eddpwB7mbw" changeId="1b8585ad-505e-425c-9711-a474aefc5cc5">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="WfDsl.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -280,7 +280,7 @@
           <styles xmi:type="notation:ShapeStyle" xmi:id="_Uv17gaQ0Eeq4eddpwB7mbw" fontName="Segoe UI" fontHeight="8"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Uv17gqQ0Eeq4eddpwB7mbw" x="396" y="342"/>
         </children>
-        <children xmi:type="notation:Shape" xmi:id="_64VXYLMdEeuke_uio0O84Q" type="Note" fontName="Segoe UI" description="Composite workflows" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
+        <children xmi:type="notation:Shape" xmi:id="_64VXYLMdEeuke_uio0O84Q" type="Note" fontName="Segoe UI" description="Composite workflows, configurations for e.g., production, development, high-scale production" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_64VXYbMdEeuke_uio0O84Q" source="specificStyles">
             <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_64VXYrMdEeuke_uio0O84Q" key="verticalAlignment" value="8"/>
           </eAnnotations>
@@ -293,7 +293,7 @@
           <styles xmi:type="notation:TextStyle" xmi:id="_64VXY7MdEeuke_uio0O84Q" textAlignment="Center"/>
           <styles xmi:type="notation:LineTypeStyle" xmi:id="_64VXZLMdEeuke_uio0O84Q"/>
           <element xsi:nil="true"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_64VXZbMdEeuke_uio0O84Q" x="804" y="-37" width="84" height="56"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_64VXZbMdEeuke_uio0O84Q" x="624" y="-120" width="279" height="56"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_BarDALMeEeuke_uio0O84Q" type="Note" fontName="Segoe UI" description="Types of parameters?" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BarDAbMeEeuke_uio0O84Q" source="specificStyles">
@@ -309,21 +309,6 @@
           <styles xmi:type="notation:LineTypeStyle" xmi:id="_BarDBrMeEeuke_uio0O84Q"/>
           <element xsi:nil="true"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BarDB7MeEeuke_uio0O84Q" x="1111" y="257" height="42"/>
-        </children>
-        <children xmi:type="notation:Shape" xmi:id="_N3jacLMeEeuke_uio0O84Q" type="Note" fontName="Segoe UI" description="Where are the data in this picture?" fillColor="10011046" transparency="0" lineColor="6737151" lineWidth="1">
-          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_N3jacbMeEeuke_uio0O84Q" source="specificStyles">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_N3jacrMeEeuke_uio0O84Q" key="verticalAlignment" value="8"/>
-          </eAnnotations>
-          <children xmi:type="notation:BasicDecorationNode" xmi:id="_N3kBgLMeEeuke_uio0O84Q" type="DiagramName">
-            <element xsi:nil="true"/>
-          </children>
-          <children xmi:type="notation:BasicDecorationNode" xmi:id="_N3kBgbMeEeuke_uio0O84Q" type="Description">
-            <element xsi:nil="true"/>
-          </children>
-          <styles xmi:type="notation:TextStyle" xmi:id="_N3jac7MeEeuke_uio0O84Q" textAlignment="Center"/>
-          <styles xmi:type="notation:LineTypeStyle" xmi:id="_N3jadLMeEeuke_uio0O84Q"/>
-          <element xsi:nil="true"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_N3jadbMeEeuke_uio0O84Q" x="312" y="178" width="129" height="44"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_cD-c4LMeEeuke_uio0O84Q" type="Note" fontName="Segoe UI" description="Sequential only pipelines? Or will there be conditionals? - Control flow components" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cD-c4bMeEeuke_uio0O84Q" source="specificStyles">
@@ -416,6 +401,66 @@
           </children>
           <styles xmi:type="notation:ShapeStyle" xmi:id="_aS2gsbMiEeuke_uio0O84Q" fontName="Segoe UI" fontHeight="8"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aS2gsrMiEeuke_uio0O84Q" x="912" y="372" width="130" height="74"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_M9OfsL4gEeuCgaiTcVgecg" type="Note" fontName="Segoe UI" description="Data source concept that defines where the data for a step comes from (if not only the previous step). E.g., web service, file, etc." fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_M9Ofsb4gEeuCgaiTcVgecg" source="specificStyles">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_M9Ofsr4gEeuCgaiTcVgecg" key="verticalAlignment" value="8"/>
+          </eAnnotations>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_M9Ofs74gEeuCgaiTcVgecg" type="DiagramName">
+            <element xsi:nil="true"/>
+          </children>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_M9OftL4gEeuCgaiTcVgecg" type="Description">
+            <element xsi:nil="true"/>
+          </children>
+          <styles xmi:type="notation:TextStyle" xmi:id="_M9Oftb4gEeuCgaiTcVgecg" textAlignment="Center"/>
+          <styles xmi:type="notation:LineTypeStyle" xmi:id="_M9Oftr4gEeuCgaiTcVgecg"/>
+          <element xsi:nil="true"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_M9Oft74gEeuCgaiTcVgecg" x="927" y="-37" width="188" height="73"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_bLBbIL4gEeuCgaiTcVgecg" type="Note" fontName="Segoe UI" description="Requirements metamodel from CloudML - extend for Edge/Fog, etc. Affinity, GPU, network segment, R-MARKET connection (blockchain), notions of public/private cloud (e.g., part of pipeline cannot be executed in public cloud)" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bLBbIb4gEeuCgaiTcVgecg" source="specificStyles">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bLBbIr4gEeuCgaiTcVgecg" key="verticalAlignment" value="8"/>
+          </eAnnotations>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_bLBbJr4gEeuCgaiTcVgecg" type="DiagramName">
+            <element xsi:nil="true"/>
+          </children>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_bLCCML4gEeuCgaiTcVgecg" type="Description">
+            <element xsi:nil="true"/>
+          </children>
+          <styles xmi:type="notation:TextStyle" xmi:id="_bLBbI74gEeuCgaiTcVgecg" textAlignment="Center"/>
+          <styles xmi:type="notation:LineTypeStyle" xmi:id="_bLBbJL4gEeuCgaiTcVgecg"/>
+          <element xsi:nil="true"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bLBbJb4gEeuCgaiTcVgecg" x="152" y="456" width="185" height="169"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_HY438L4hEeuCgaiTcVgecg" type="Note" fontName="Segoe UI" description="Idea: separation of concerns between the different types of stakeholders (1 package in Ecore for each type of stakeholder)" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HY438b4hEeuCgaiTcVgecg" source="specificStyles">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HY438r4hEeuCgaiTcVgecg" key="verticalAlignment" value="8"/>
+          </eAnnotations>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_HY43874hEeuCgaiTcVgecg" type="DiagramName">
+            <element xsi:nil="true"/>
+          </children>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_HY439L4hEeuCgaiTcVgecg" type="Description">
+            <element xsi:nil="true"/>
+          </children>
+          <styles xmi:type="notation:TextStyle" xmi:id="_HY439b4hEeuCgaiTcVgecg" textAlignment="Center"/>
+          <styles xmi:type="notation:LineTypeStyle" xmi:id="_HY439r4hEeuCgaiTcVgecg"/>
+          <element xsi:nil="true"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HY43974hEeuCgaiTcVgecg" x="534" y="480" width="185" height="97"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_qUoCEL4hEeuCgaiTcVgecg" type="Note" fontName="Segoe UI" description="Connection with semantics model - for version 2 of DSL" fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qUoCEb4hEeuCgaiTcVgecg" source="specificStyles">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qUoCEr4hEeuCgaiTcVgecg" key="verticalAlignment" value="8"/>
+          </eAnnotations>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_qUoCFr4hEeuCgaiTcVgecg" type="DiagramName">
+            <element xsi:nil="true"/>
+          </children>
+          <children xmi:type="notation:BasicDecorationNode" xmi:id="_qUopIL4hEeuCgaiTcVgecg" type="Description">
+            <element xsi:nil="true"/>
+          </children>
+          <styles xmi:type="notation:TextStyle" xmi:id="_qUoCE74hEeuCgaiTcVgecg" textAlignment="Center"/>
+          <styles xmi:type="notation:LineTypeStyle" xmi:id="_qUoCFL4hEeuCgaiTcVgecg"/>
+          <element xsi:nil="true"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_qUoCFb4hEeuCgaiTcVgecg" x="96" y="4" width="133" height="69"/>
         </children>
         <styles xmi:type="notation:DiagramStyle" xmi:id="_UdJB1KQ0Eeq4eddpwB7mbw"/>
         <edges xmi:type="notation:Edge" xmi:id="_Uv4XrKQ0Eeq4eddpwB7mbw" type="4001" element="_UvtYgKQ0Eeq4eddpwB7mbw" source="_Uv0tRKQ0Eeq4eddpwB7mbw" target="_Uv0tRKQ0Eeq4eddpwB7mbw">
@@ -710,7 +755,7 @@
           <styles xmi:type="notation:ArrowStyle" xmi:id="_9jn48bMdEeuke_uio0O84Q"/>
           <styles xmi:type="notation:LineTypeStyle" xmi:id="_9jn48rMdEeuke_uio0O84Q"/>
           <element xsi:nil="true"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9jn487MdEeuke_uio0O84Q" points="[-30, 14, 51, -24]$[-74, 34, 7, -4]"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9jn487MdEeuke_uio0O84Q" points="[-12, 14, 84, -107]$[-89, 112, 7, -9]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9jq8QLMdEeuke_uio0O84Q" id="(1.0,0.75)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9jq8QbMdEeuke_uio0O84Q" id="(0.940677966101695,0.36538461538461536)"/>
         </edges>
@@ -729,6 +774,14 @@
           <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZW3Zk7MiEeuke_uio0O84Q" points="[4, 13, -12, -35]$[16, 48, 0, 0]"/>
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZW4nsLMiEeuke_uio0O84Q" id="(0.7602739726027398,0.7636363636363637)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ZW4nsbMiEeuke_uio0O84Q" id="(0.14814814814814814,0.0)"/>
+        </edges>
+        <edges xmi:type="notation:Connector" xmi:id="_NoecIL4gEeuCgaiTcVgecg" type="NoteAttachment" source="_Uv0tS6Q0Eeq4eddpwB7mbw" target="_M9OfsL4gEeuCgaiTcVgecg" lineWidth="1">
+          <styles xmi:type="notation:ArrowStyle" xmi:id="_NoecIb4gEeuCgaiTcVgecg"/>
+          <styles xmi:type="notation:LineTypeStyle" xmi:id="_NoecIr4gEeuCgaiTcVgecg"/>
+          <element xsi:nil="true"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_NoecI74gEeuCgaiTcVgecg" points="[25, -6, -113, 1]$[138, -26, 0, -19]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NoiGgL4gEeuCgaiTcVgecg" id="(0.8389830508474576,0.3584905660377358)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_NoiGgb4gEeuCgaiTcVgecg" id="(0.0,1.0)"/>
         </edges>
       </data>
     </ownedAnnotationEntries>
@@ -1307,7 +1360,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC%20ESupertypes']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_aStWwLMiEeuke_uio0O84Q" name="GenericParameter" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/wf-dsl/workflow/model/generated/WfDsl.ecore#//GenericParameter/parameterName}' must be set&#xA;ERROR : The typed element must have a type&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/wf-dsl/workflow/model/generated/WfDsl.ecore#//GenericParameter/parameterValue}' must be set&#xA;ERROR : The typed element must have a type" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_aStWwLMiEeuke_uio0O84Q" name="GenericParameter" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/workflow/model/generated/WfDsl.ecore#//GenericParameter/parameterName}' must be set&#xA;ERROR : The typed element must have a type&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/workflow/model/generated/WfDsl.ecore#//GenericParameter/parameterValue}' must be set&#xA;ERROR : The typed element must have a type" width="12" height="10">
       <target xmi:type="ecore:EClass" href="WfDsl.ecore#//GenericParameter"/>
       <semanticElements xmi:type="ecore:EClass" href="WfDsl.ecore#//GenericParameter"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
@@ -1315,13 +1368,13 @@
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_c-njb7MiEeuke_uio0O84Q" labelColor="239,41,41" description="_c-njbbMiEeuke_uio0O84Q" borderSize="1" borderSizeComputationExpression="1" borderColor="239,41,41" backgroundStyle="Liquid" foregroundColor="255,252,216"/>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_c-j5ALMiEeuke_uio0O84Q" name="parameterName" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/wf-dsl/workflow/model/generated/WfDsl.ecore#//GenericParameter/parameterName}' must be set&#xA;ERROR : The typed element must have a type">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_c-j5ALMiEeuke_uio0O84Q" name="parameterName" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/workflow/model/generated/WfDsl.ecore#//GenericParameter/parameterName}' must be set&#xA;ERROR : The typed element must have a type">
         <target xmi:type="ecore:EAttribute" href="WfDsl.ecore#//GenericParameter/parameterName"/>
         <semanticElements xmi:type="ecore:EAttribute" href="WfDsl.ecore#//GenericParameter/parameterName"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_c-kgEbMiEeuke_uio0O84Q" labelColor="239,41,41" labelAlignment="LEFT" description="_c-kgELMiEeuke_uio0O84Q" borderColor="239,41,41"/>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_eJOVULMiEeuke_uio0O84Q" name="parameterValue" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/wf-dsl/workflow/model/generated/WfDsl.ecore#//GenericParameter/parameterValue}' must be set&#xA;ERROR : The typed element must have a type">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_eJOVULMiEeuke_uio0O84Q" name="parameterValue" tooltipText="&#xA;ERROR : The required feature 'eAttributeType' of 'EAttribute{platform:/resource/workflow/model/generated/WfDsl.ecore#//GenericParameter/parameterValue}' must be set&#xA;ERROR : The typed element must have a type">
         <target xmi:type="ecore:EAttribute" href="WfDsl.ecore#//GenericParameter/parameterValue"/>
         <semanticElements xmi:type="ecore:EAttribute" href="WfDsl.ecore#//GenericParameter/parameterValue"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_eJO8YLMiEeuke_uio0O84Q" labelColor="239,41,41" labelAlignment="LEFT" description="_c-kgELMiEeuke_uio0O84Q" borderColor="239,41,41"/>

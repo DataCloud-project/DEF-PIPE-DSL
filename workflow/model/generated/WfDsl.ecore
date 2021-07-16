@@ -23,6 +23,8 @@
         upperBound="-1" eType="#//AbstractStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" eType="#//DeploymentParameter"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
+        eType="#//ControlParemeter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
@@ -179,12 +181,47 @@
   <eClassifiers xsi:type="ecore:EClass" name="ParameterGroup">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
         eType="#//Parameter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterOperator" eType="#//ParameterOperator"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterOperator" eType="#//Operator"
         defaultValueLiteral="AND"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ParameterOperator">
+  <eClassifiers xsi:type="ecore:EEnum" name="Operator">
     <eLiterals name="AND"/>
     <eLiterals name="XOR" value="1"/>
     <eLiterals name="OR" value="2"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlParemeter" eSuperTypes="#//Parameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fork" eType="#//ForkCondition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="join" eType="#//JoinCondition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionStep">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="abstractcondition" eType="#//AbstractCondition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" eType="#//Step"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinCondition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionstep" upperBound="-1"
+        eType="#//ConditionStep" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Operator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForkCondition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionstep" upperBound="-1"
+        eType="#//ConditionStep" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//AbstractCondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparatorOperator" eType="#//ComparisonOperatorType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ComparisonOperatorType">
+    <eLiterals name="EQUAL"/>
+    <eLiterals name="LESS_THAN" value="1"/>
+    <eLiterals name="GREATER_THAN" value="2"/>
+    <eLiterals name="NOT_EQAL" value="3"/>
+    <eLiterals name="EQUAL_LESS_THAN" value="4"/>
+    <eLiterals name="EQUAL_GREATER_THAN" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeCondition" eSuperTypes="#//AbstractCondition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="abstractcondtion" upperBound="-1"
+        eType="#//AbstractCondition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//Operator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractCondition"/>
 </ecore:EPackage>

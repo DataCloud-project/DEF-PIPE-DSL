@@ -24,10 +24,18 @@
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//DeploymentLayers/EDGE"/>
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//DeploymentLayers/CLOUD"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="WfDsl.ecore#//ParameterOperator">
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ParameterOperator/AND"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ParameterOperator/XOR"/>
-      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ParameterOperator/OR"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="WfDsl.ecore#//Operator">
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//Operator/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//Operator/XOR"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//Operator/OR"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="WfDsl.ecore#//ComparisonOperatorType">
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ComparisonOperatorType/EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ComparisonOperatorType/LESS_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ComparisonOperatorType/GREATER_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ComparisonOperatorType/NOT_EQAL"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ComparisonOperatorType/EQUAL_LESS_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ComparisonOperatorType/EQUAL_GREATER_THAN"/>
     </genEnums>
     <genClasses ecoreClass="WfDsl.ecore#//Pipeline">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Pipeline/name"/>
@@ -43,6 +51,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//AbstractStep/environment"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//AbstractStep/previous"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//AbstractStep/deploymentParams"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//AbstractStep/controlParemeter"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//CommunicationMedium">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//CommunicationMedium/type"/>
@@ -154,5 +163,29 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//ParameterGroup/parameter"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ParameterGroup/parameterOperator"/>
     </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//ControlParemeter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//ControlParemeter/fork"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//ControlParemeter/join"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//ConditionStep">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//ConditionStep/abstractcondition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//ConditionStep/step"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//JoinCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//JoinCondition/conditionstep"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//JoinCondition/type"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//ForkCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//ForkCondition/conditionstep"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//Condition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Condition/comparatorOperator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Condition/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//CompositeCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//CompositeCondition/abstractcondtion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//CompositeCondition/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//AbstractCondition"/>
   </genPackages>
 </genmodel:GenModel>

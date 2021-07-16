@@ -66,9 +66,67 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//EnvironmentVariable/value"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//ParameterValueTypes"/>
-    <genClasses ecoreClass="WfDsl.ecore#//GenericParameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//GenericParameter/parameterName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//GenericParameter/parameterValue"/>
+    <genClasses image="false" ecoreClass="WfDsl.ecore#//HardParameters"/>
+    <genClasses image="false" ecoreClass="WfDsl.ecore#//SoftParameters"/>
+    <genClasses ecoreClass="WfDsl.ecore#//ServiceLevelObjective">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//ServiceLevelObjective/costumServiceLevel"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//Condition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Condition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Condition/comparisonOperator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Condition/threshold"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Condition/validity"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="WfDsl.ecore#//OSOrImageParameter"/>
+    <genClasses image="false" ecoreClass="WfDsl.ecore#//HardwareParameter"/>
+    <genClasses image="false" ecoreClass="WfDsl.ecore#//SecurityParameter"/>
+    <genClasses image="false" ecoreClass="WfDsl.ecore#//ScaleParameter"/>
+    <genClasses ecoreClass="WfDsl.ecore#//OSParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//OSParameter/os"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//OSParameter/is64os"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//ImageParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ImageParameter/imageId"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//QualitativeHardwareParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//QualitativeHardwareParameter/minBenchmark"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//QualitativeHardwareParameter/maxBenchmark"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//QuantitativeHardwareParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//QuantitativeHardwareParameter/minCPU"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//QuantitativeHardwareParameter/maxCPU"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//QuantitativeHardwareParameter/minRAM"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//QuantitativeHardwareParameter/maxRAM"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//QuantitativeHardwareParameter/minStorage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//QuantitativeHardwareParameter/maxStorage"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//SecurityControl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//SecurityControl/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//SecurityControl/specification"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//SecurityControl/securityParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//OptimizationRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//OptimizationRequirement/optimisationFunction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//OptimizationRequirement/metric"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="WfDsl.ecore#//Metric">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Metric/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Metric/valueDirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Metric/isVariable"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//VerticalScaleParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//VerticalScaleParameter/minCPU"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//VerticalScaleParameter/maxCPU"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//VerticalScaleParameter/minRAM"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//VerticalScaleParameter/maxRAM"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//VerticalScaleParameter/minCores"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//VerticalScaleParameter/maxCores"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//VerticalScaleParameter/minStorage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//VerticalScaleParameter/maxStorage"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//HorizontalScaleParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//HorizontalScaleParameter/minInstance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//HorizontalScaleParameter/maxInstance"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

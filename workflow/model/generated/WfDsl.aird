@@ -5,7 +5,7 @@
     <semanticResources>WfDsl.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_7_QWoKQzEeq4eddpwB7mbw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_UdJB0aQ0Eeq4eddpwB7mbw" name="wfDsl class diagram" repPath="#_UdEJUKQ0Eeq4eddpwB7mbw" changeId="80e56dcf-43ea-47da-a47e-5350efb2582d">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_UdJB0aQ0Eeq4eddpwB7mbw" name="wfDsl class diagram" repPath="#_UdEJUKQ0Eeq4eddpwB7mbw" changeId="667cb191-c629-4b3d-8c87-5197d8c511eb">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="WfDsl.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -2080,9 +2080,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_SkWMcOYxEeud-5E8303mfQ" name="Condition" tooltipText="" incomingEdges="_nJ1Cv-YxEeud-5E8303mfQ" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="WfDsl.ecore#//Condition"/>
-      <semanticElements xmi:type="ecore:EClass" href="WfDsl.ecore#//Condition"/>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_SkWMcOYxEeud-5E8303mfQ" name="ServiceLevelCondition" tooltipText="" incomingEdges="_nJ1Cv-YxEeud-5E8303mfQ" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="WfDsl.ecore#//ServiceLevelCondition"/>
+      <semanticElements xmi:type="ecore:EClass" href="WfDsl.ecore#//ServiceLevelCondition"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -2091,32 +2091,32 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_VCUqwOYxEeud-5E8303mfQ" name="name : EString" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="WfDsl.ecore#//Condition/name"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="WfDsl.ecore#//Condition/name"/>
+        <target xmi:type="ecore:EAttribute" href="WfDsl.ecore#//ServiceLevelCondition/name"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="WfDsl.ecore#//ServiceLevelCondition/name"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_WOdtweYxEeud-5E8303mfQ" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_Ycx_cOYxEeud-5E8303mfQ" name="comparisonOperator : EString = GREATER_THAN" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="WfDsl.ecore#//Condition/comparisonOperator"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="WfDsl.ecore#//Condition/comparisonOperator"/>
+        <target xmi:type="ecore:EAttribute" href="WfDsl.ecore#//ServiceLevelCondition/comparisonOperator"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="WfDsl.ecore#//ServiceLevelCondition/comparisonOperator"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_cpDyoOYxEeud-5E8303mfQ" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_eJbZMOYxEeud-5E8303mfQ" name="threshold : EDouble = 0" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="WfDsl.ecore#//Condition/threshold"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="WfDsl.ecore#//Condition/threshold"/>
+        <target xmi:type="ecore:EAttribute" href="WfDsl.ecore#//ServiceLevelCondition/threshold"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="WfDsl.ecore#//ServiceLevelCondition/threshold"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_f6sihOYxEeud-5E8303mfQ" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_gZIK8OYxEeud-5E8303mfQ" name="validity : EDate" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="WfDsl.ecore#//Condition/validity"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="WfDsl.ecore#//Condition/validity"/>
+        <target xmi:type="ecore:EAttribute" href="WfDsl.ecore#//ServiceLevelCondition/validity"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="WfDsl.ecore#//ServiceLevelCondition/validity"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_itezMuYxEeud-5E8303mfQ" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>

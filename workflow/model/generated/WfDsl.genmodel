@@ -77,11 +77,11 @@
     <genClasses ecoreClass="WfDsl.ecore#//ServiceLevelObjective">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//ServiceLevelObjective/costumServiceLevel"/>
     </genClasses>
-    <genClasses ecoreClass="WfDsl.ecore#//Condition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Condition/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Condition/comparisonOperator"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Condition/threshold"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Condition/validity"/>
+    <genClasses ecoreClass="WfDsl.ecore#//ServiceLevelCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ServiceLevelCondition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ServiceLevelCondition/comparisonOperator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ServiceLevelCondition/threshold"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ServiceLevelCondition/validity"/>
     </genClasses>
     <genClasses image="false" ecoreClass="WfDsl.ecore#//OSOrImageParameter"/>
     <genClasses image="false" ecoreClass="WfDsl.ecore#//HardwareParameter"/>

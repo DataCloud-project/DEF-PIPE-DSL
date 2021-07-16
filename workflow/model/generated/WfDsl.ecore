@@ -74,9 +74,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="HardParameters" abstract="true" eSuperTypes="#//EnvironmentVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="SoftParameters" abstract="true" eSuperTypes="#//EnvironmentVariable"/>
   <eClassifiers xsi:type="ecore:EClass" name="ServiceLevelObjective" eSuperTypes="#//HardParameters">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="costumServiceLevel" eType="#//Condition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="costumServiceLevel" eType="#//ServiceLevelCondition"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Condition">
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceLevelCondition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="GREATER_THAN"/>

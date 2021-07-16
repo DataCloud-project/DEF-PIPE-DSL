@@ -19,6 +19,11 @@
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/WEEK"/>
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//TimeUnits/MONTH"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="WfDsl.ecore#//DeploymentLayers">
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//DeploymentLayers/FOG"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//DeploymentLayers/EDGE"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//DeploymentLayers/CLOUD"/>
+    </genEnums>
     <genClasses ecoreClass="WfDsl.ecore#//Pipeline">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Pipeline/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/base"/>
@@ -33,6 +38,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/environment"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/previous"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/deploymentParams"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//CommunicationMedium">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//CommunicationMedium/type"/>
@@ -40,6 +46,7 @@
     <genClasses ecoreClass="WfDsl.ecore#//StepImplementation"/>
     <genClasses ecoreClass="WfDsl.ecore#//DockerImplementation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//DockerImplementation/startTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//DockerImplementation/imageName"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//Trigger"/>
     <genClasses ecoreClass="WfDsl.ecore#//OneTimeTrigger">
@@ -127,6 +134,9 @@
     <genClasses ecoreClass="WfDsl.ecore#//HorizontalScaleParameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//HorizontalScaleParameter/minInstance"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//HorizontalScaleParameter/maxInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//DeploymentParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//DeploymentParameter/layer"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

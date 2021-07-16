@@ -23,6 +23,8 @@
         eType="#//EnvironmentVariable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previous" unique="false"
         upperBound="-1" eType="#//Step"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" eType="#//DeploymentParameter"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
@@ -30,6 +32,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="StepImplementation"/>
   <eClassifiers xsi:type="ecore:EClass" name="DockerImplementation" eSuperTypes="#//StepImplementation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Trigger"/>
   <eClassifiers xsi:type="ecore:EClass" name="OneTimeTrigger" eSuperTypes="#//Trigger">
@@ -156,5 +159,13 @@
         defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxInstance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeploymentParameter" eSuperTypes="#//Parameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="layer" eType="#//DeploymentLayers"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DeploymentLayers">
+    <eLiterals name="FOG"/>
+    <eLiterals name="EDGE" value="1"/>
+    <eLiterals name="CLOUD" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

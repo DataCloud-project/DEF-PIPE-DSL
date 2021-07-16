@@ -8,8 +8,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//InputParameter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="steps" upperBound="-1"
-        eType="#//AbstractStep" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="abstractstep" lowerBound="1"
+        eType="#//AbstractStep"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractStep">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -49,6 +49,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parametergroup" eType="#//ParameterGroup"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputParameter" eSuperTypes="#//Parameter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ParameterValueTypes"
@@ -173,5 +174,17 @@
   <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//AbstractStep">
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NewEClass36"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterGroup">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterOperator" eType="#//ParameterOperator"
+        defaultValueLiteral="AND"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ParameterOperator">
+    <eLiterals name="AND"/>
+    <eLiterals name="XOR" value="1"/>
+    <eLiterals name="OR" value="2"/>
   </eClassifiers>
 </ecore:EPackage>

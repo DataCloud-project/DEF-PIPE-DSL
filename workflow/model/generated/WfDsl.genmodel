@@ -24,12 +24,17 @@
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//DeploymentLayers/EDGE"/>
       <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//DeploymentLayers/CLOUD"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="WfDsl.ecore#//ParameterOperator">
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ParameterOperator/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ParameterOperator/XOR"/>
+      <genEnumLiterals ecoreEnumLiteral="WfDsl.ecore#//ParameterOperator/OR"/>
+    </genEnums>
     <genClasses ecoreClass="WfDsl.ecore#//Pipeline">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Pipeline/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/base"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/communicationMedium"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/params"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/steps"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/abstractstep"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//AbstractStep">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//AbstractStep/name"/>
@@ -64,6 +69,7 @@
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//Parameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Parameter/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Parameter/parametergroup"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//InputParameter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//InputParameter/value"/>
@@ -142,6 +148,11 @@
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//Step">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/implementation"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//NewEClass36"/>
+    <genClasses ecoreClass="WfDsl.ecore#//ParameterGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//ParameterGroup/parameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//ParameterGroup/parameterOperator"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

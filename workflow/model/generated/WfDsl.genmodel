@@ -31,14 +31,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/params"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Pipeline/steps"/>
     </genClasses>
-    <genClasses ecoreClass="WfDsl.ecore#//Step">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//Step/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/triggers"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/implementation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/params"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/environment"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/previous"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/deploymentParams"/>
+    <genClasses ecoreClass="WfDsl.ecore#//AbstractStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//AbstractStep/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//AbstractStep/triggers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//AbstractStep/params"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//AbstractStep/environment"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference WfDsl.ecore#//AbstractStep/previous"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//AbstractStep/deploymentParams"/>
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//CommunicationMedium">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//CommunicationMedium/type"/>
@@ -137,6 +136,12 @@
     </genClasses>
     <genClasses ecoreClass="WfDsl.ecore#//DeploymentParameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WfDsl.ecore#//DeploymentParameter/layer"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//CompositeStep">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//CompositeStep/steps"/>
+    </genClasses>
+    <genClasses ecoreClass="WfDsl.ecore#//Step">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WfDsl.ecore#//Step/implementation"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

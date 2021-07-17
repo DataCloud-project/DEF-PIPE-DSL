@@ -214,14 +214,14 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="JoinCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionstep" upperBound="-1"
-          eType="#//Control%20Parameters/ConditionStep" containment="true"/>
+          eType="#//Control%20Parameters/ConditionStepPair" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//LogicalOperatorType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ForkCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionstep" upperBound="-1"
-          eType="#//Control%20Parameters/ConditionStep" containment="true"/>
+          eType="#//Control%20Parameters/ConditionStepPair" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ConditionStep">
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionStepPair">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractContition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="step" eType="#//Step.1"/>
     </eClassifiers>

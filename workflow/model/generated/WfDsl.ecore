@@ -177,30 +177,29 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NewEClass36"/>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterGroup">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
         eType="#//Parameter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterOperator" eType="#//Operator"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterOperator" eType="#//LogicalOperatorType"
         defaultValueLiteral="AND"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Operator">
+  <eClassifiers xsi:type="ecore:EEnum" name="LogicalOperatorType">
     <eLiterals name="AND"/>
     <eLiterals name="XOR" value="1"/>
     <eLiterals name="OR" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ControlParemeter" eSuperTypes="#//Parameter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fork" eType="#//ForkCondition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="join" eType="#//JoinCondition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fork" eType="#//ForkCondition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionStep">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="abstractcondition" eType="#//AbstractCondition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="step" eType="#//Step"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractContition"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="step" eType="#//Step.1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JoinCondition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionstep" upperBound="-1"
         eType="#//ConditionStep" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Operator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//LogicalOperatorType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ForkCondition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="conditionstep" upperBound="-1"
@@ -219,9 +218,11 @@
     <eLiterals name="EQUAL_GREATER_THAN" value="5"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositeCondition" eSuperTypes="#//AbstractCondition">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="abstractcondtion" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
         eType="#//AbstractCondition" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//Operator"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//LogicalOperatorType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractCondition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractCondition" instanceClassName="AbstractCondition"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="AbstractContition" instanceClassName="AbstractContition"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Step" instanceTypeName="Step"/>
 </ecore:EPackage>

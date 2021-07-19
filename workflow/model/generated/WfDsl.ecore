@@ -3,18 +3,18 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="wfDsl" nsURI="http://www.WfDsl.workflow" nsPrefix="wfDsl">
   <eClassifiers xsi:type="ecore:EClass" name="Pipeline">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="base" eType="#//Pipeline"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="abstractstep" lowerBound="1"
-        eType="#//AbstractStep"/>
+        upperBound="-1" eType="#//AbstractStep"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="communicationMedium" eType="#//CommunicationMedium"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractStep">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractStep" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
         eType="#//Trigger/Trigger" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
-        eType="#//Input%20Parameters/InputParameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="environment" upperBound="-1"
-        eType="#//Environment%20Parameters%20(Requirements)/EnvironmentVariable" containment="true"/>
+        eType="#//Environment%20Parameters%20(Requirements)/ExecutionRequirement"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previous" unique="false"
         upperBound="-1" eType="#//AbstractStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
@@ -53,14 +53,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="CompositeStep" eSuperTypes="#//AbstractStep">
     <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1" upperBound="-1"
         eType="#//AbstractStep" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="communicationMedium" eType="#//CommunicationMedium"
-        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//AbstractStep">
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" eType="#//Deployment%20Parameters%20(Requirements)/DeploymentParameter"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
+        eType="#//Input%20Parameters/DataSource" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterGroup">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
@@ -101,11 +101,11 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Environment Parameters (Requirements)">
-    <eClassifiers xsi:type="ecore:EClass" name="EnvironmentVariable" eSuperTypes="#//Parameter">
+    <eClassifiers xsi:type="ecore:EClass" name="ExecutionRequirement" eSuperTypes="#//Parameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="HardParameters" abstract="true" eSuperTypes="#//Environment%20Parameters%20(Requirements)/EnvironmentVariable"/>
-    <eClassifiers xsi:type="ecore:EClass" name="SoftParameters" abstract="true" eSuperTypes="#//Environment%20Parameters%20(Requirements)/EnvironmentVariable"/>
+    <eClassifiers xsi:type="ecore:EClass" name="HardParameters" abstract="true" eSuperTypes="#//Environment%20Parameters%20(Requirements)/ExecutionRequirement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SoftParameters" abstract="true" eSuperTypes="#//Environment%20Parameters%20(Requirements)/ExecutionRequirement"/>
     <eClassifiers xsi:type="ecore:EClass" name="Metric" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueDirection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EShort"
@@ -198,27 +198,30 @@
   <eSubpackages name="Control Parameters">
     <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//Control%20Parameters/AbstractCondition">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparatorOperator" eType="#//ComparisonOperatorType"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="operand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingScriptName"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral=""/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceProcessingScriptName"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="None"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AbstractCondition" instanceClassName="AbstractCondition"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractCondition" instanceClassName="AbstractCondition"
+        abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="CompositeCondition" eSuperTypes="#//Control%20Parameters/AbstractCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
           eType="#//Control%20Parameters/AbstractCondition" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//LogicalOperatorType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ControlParemeter" eSuperTypes="#//Parameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="join" eType="#//Control%20Parameters/JoinCondition"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="fork" eType="#//Control%20Parameters/ForkCondition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pre" eType="#//Control%20Parameters/PreCondition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="post" eType="#//Control%20Parameters/PostCondition"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="JoinCondition">
+    <eClassifiers xsi:type="ecore:EClass" name="PreCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStepList" lowerBound="1"
           upperBound="-1" eType="#//Control%20Parameters/ConditionStepPair" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//LogicalOperatorType"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ForkCondition">
+    <eClassifiers xsi:type="ecore:EClass" name="PostCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStepList" lowerBound="1"
           upperBound="-1" eType="#//Control%20Parameters/ConditionStepPair" containment="true"/>
     </eClassifiers>
@@ -233,7 +236,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Input Parameters">
-    <eClassifiers xsi:type="ecore:EClass" name="InputParameter" eSuperTypes="#//Parameter">
+    <eClassifiers xsi:type="ecore:EClass" name="DataSource" eSuperTypes="#//Parameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Input%20Parameters/ParameterValueTypes"
           containment="true"/>
     </eClassifiers>

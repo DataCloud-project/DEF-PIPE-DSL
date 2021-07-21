@@ -19,6 +19,8 @@
         upperBound="-1" eType="#//AbstractStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
         eType="#//Control%20Parameters/ControlParemeter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" eType="#//Deployment%20Parameters%20(Requirements)/DeploymentParameter"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
@@ -56,8 +58,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//AbstractStep">
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" eType="#//Deployment%20Parameters%20(Requirements)/DeploymentParameter"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
         eType="#//Input%20Parameters/DataSource" containment="true"/>

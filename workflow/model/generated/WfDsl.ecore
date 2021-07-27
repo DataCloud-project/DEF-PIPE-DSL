@@ -56,7 +56,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1" upperBound="-1"
         eType="#//AbstractStep" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//AbstractStep">
+  <eClassifiers xsi:type="ecore:EClass" name="StepTemplate" eSuperTypes="#//AbstractStep">
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
@@ -83,6 +83,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="AbstractCondition" instanceClassName="AbstractContition"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Step" instanceTypeName="Step"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//StepTemplate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataProducer" eSuperTypes="#//StepTemplate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataConsumer" eSuperTypes="#//StepTemplate"/>
   <eSubpackages name="Trigger">
     <eClassifiers xsi:type="ecore:EClass" name="ScheduleTrigger" eSuperTypes="#//Trigger/Trigger">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -213,10 +216,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//LogicalOperatorType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ControlParemeter" eSuperTypes="#//Parameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pre" eType="#//Control%20Parameters/PreCondition"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="post" eType="#//Control%20Parameters/PostCondition"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="while" eType="#//Control%20Parameters/While"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="iteration" eType="#//Control%20Parameters/Iteration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Loop" eType="#//Control%20Parameters/Loop"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Control%20Parameters/Condition.1"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PreCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStepList" lowerBound="1"
@@ -229,15 +230,22 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConditionStepPair">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="step" eType="#//Step.1"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="step" eType="#//Step"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="While">
+    <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="#//Control%20Parameters/Loop">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="atLeastOnce" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+          defaultValueLiteral="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Iteration">
+    <eClassifiers xsi:type="ecore:EClass" name="Iteration" eSuperTypes="#//Control%20Parameters/Loop">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingScript" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="None"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Loop"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Condition">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pre" eType="#//Control%20Parameters/PreCondition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="post" eType="#//Control%20Parameters/PostCondition"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Deployment Parameters (Requirements)">

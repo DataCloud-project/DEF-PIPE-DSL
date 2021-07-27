@@ -81,7 +81,7 @@
     <eLiterals name="EQUAL_LESS_THAN" value="4"/>
     <eLiterals name="EQUAL_GREATER_THAN" value="5"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="AbstractContition" instanceClassName="AbstractContition"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="AbstractCondition" instanceClassName="AbstractContition"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Step" instanceTypeName="Step"/>
   <eSubpackages name="Trigger">
     <eClassifiers xsi:type="ecore:EClass" name="ScheduleTrigger" eSuperTypes="#//Trigger/Trigger">
@@ -215,6 +215,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="ControlParemeter" eSuperTypes="#//Parameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pre" eType="#//Control%20Parameters/PreCondition"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="post" eType="#//Control%20Parameters/PostCondition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="while" eType="#//Control%20Parameters/While"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="iteration" eType="#//Control%20Parameters/Iteration"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PreCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStepList" lowerBound="1"
@@ -226,8 +228,16 @@
           upperBound="-1" eType="#//Control%20Parameters/ConditionStepPair" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConditionStepPair">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractContition"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="step" eType="#//Step.1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="While">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Iteration">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingScript" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral="None"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Deployment Parameters (Requirements)">

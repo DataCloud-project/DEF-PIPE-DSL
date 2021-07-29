@@ -18,7 +18,7 @@
         upperBound="-1" eType="#//AbstractStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
         eType="#//Control%20Parameters/ControlParemeter"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" eType="#//Deployment%20Parameters%20(Requirements)/DeploymentParameter"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" eType="#//Deployment%20Parameters/DeploymentParameter"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
@@ -115,7 +115,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVariable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OptimizationRequirement" eSuperTypes="#//Environment%20Parameters/SoftParameters">
+    <eClassifiers xsi:type="ecore:EClass" name="OptimizationParameters" eSuperTypes="#//Environment%20Parameters/SoftParameters">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="optimisationFunction"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="MINIMIZE"/>
@@ -215,8 +215,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//LogicalOperatorType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ControlParemeter" eSuperTypes="#//Parameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="Loop" eType="#//Control%20Parameters/Loop"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Control%20Parameters/Condition.1"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Loop" eType="#//Control%20Parameters/LoopParameter"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Control%20Parameters/ConditionParameter"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PreCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStepList" lowerBound="1"
@@ -231,23 +231,23 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="step" eType="#//Step"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="#//Control%20Parameters/Loop">
+    <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="#//Control%20Parameters/LoopParameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="atLeastOnce" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Iteration" eSuperTypes="#//Control%20Parameters/Loop">
+    <eClassifiers xsi:type="ecore:EClass" name="Iteration" eSuperTypes="#//Control%20Parameters/LoopParameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingScript" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="None"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Loop"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Condition">
+    <eClassifiers xsi:type="ecore:EClass" name="LoopParameter"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConditionParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pre" eType="#//Control%20Parameters/PreCondition"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="post" eType="#//Control%20Parameters/PostCondition"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Deployment Parameters (Requirements)">
+  <eSubpackages name="Deployment Parameters">
     <eClassifiers xsi:type="ecore:EClass" name="DeploymentParameter" eSuperTypes="#//Parameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="layer" eType="#//DeploymentLayers"/>
     </eClassifiers>

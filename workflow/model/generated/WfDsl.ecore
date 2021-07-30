@@ -12,14 +12,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
         eType="#//Trigger/Trigger" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" upperBound="-1"
-        eType="#//Environment%20Parameters/ExecutionRequirement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="previous" unique="false"
         upperBound="-1" eType="#//AbstractStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
         eType="#//Control%20Parameters/ControlParemeter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" eType="#//Deployment%20Parameters/DeploymentParameter"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executionrequirement" upperBound="-1"
+        eType="#//Environment%20Parameters/ExecutionRequirement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
@@ -85,6 +85,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//StepTemplate"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataProducer" eSuperTypes="#//StepTemplate"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataConsumer" eSuperTypes="#//StepTemplate"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="ForSourceProcessing" instanceTypeName="newDataType8"/>
   <eSubpackages name="Trigger">
     <eClassifiers xsi:type="ecore:EClass" name="ScheduleTrigger" eSuperTypes="#//Trigger/Trigger">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -231,20 +232,36 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="step" eType="#//Step"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="While" eSuperTypes="#//Control%20Parameters/LoopParameter">
+    <eClassifiers xsi:type="ecore:EClass" name="WhileLooop" eSuperTypes="#//Control%20Parameters/LoopParameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="atLeastOnce" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-          defaultValueLiteral="true"/>
+          defaultValueLiteral="false"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Iteration" eSuperTypes="#//Control%20Parameters/LoopParameter">
+    <eClassifiers xsi:type="ecore:EClass" name="ForLoop" eSuperTypes="#//Control%20Parameters/LoopParameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="processingScript" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="scriptNameForPreparingSourceForNextExecution"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="None"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="forPreparingSource" eType="#//ForSourceProcessing"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="forsourceprocessing"
+          lowerBound="1" eType="#//Control%20Parameters/ForSourceProcessing"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LoopParameter"/>
     <eClassifiers xsi:type="ecore:EClass" name="ConditionParameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pre" eType="#//Control%20Parameters/PreCondition"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="post" eType="#//Control%20Parameters/PostCondition"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ForSourceProcessing">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//Control%20Parameters/OperatorType"
+          defaultValueLiteral="INCREMENT"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+          defaultValueLiteral="1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="OperatorType">
+      <eLiterals name="INCREMENT"/>
+      <eLiterals name="DECREMENT" value="1"/>
+      <eLiterals name="DIVISION" value="2"/>
+      <eLiterals name="MULTIPLY" value="3"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Deployment Parameters">

@@ -18,8 +18,8 @@
         eType="#//Control%20Parameters/ControlParemeter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" eType="#//Deployment%20Parameters/DeploymentParameter"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="executionrequirement" upperBound="-1"
-        eType="#//Environment%20Parameters/ExecutionRequirement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="more" eType="#//Environment%20Parameters/ExecutionRequirement"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
@@ -59,7 +59,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
-        eType="#//Input%20Parameters/DataSource" containment="true"/>
+        eType="#//Data%20Source%20Parameters/DataSource" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterGroup">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
@@ -268,12 +268,28 @@
     <eClassifiers xsi:type="ecore:EClass" name="DeploymentParameter" eSuperTypes="#//Parameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="layer" eType="#//DeploymentLayers"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="DeploymentLayers">
+      <eLiterals name="EDGE" value="1"/>
+      <eLiterals name="FOG" value="1"/>
+      <eLiterals name="CLOUD" value="2"/>
+    </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Input Parameters">
+  <eSubpackages name="Data Source Parameters">
     <eClassifiers xsi:type="ecore:EClass" name="DataSource" eSuperTypes="#//Parameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Input%20Parameters/ParameterValueTypes"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Data%20Source%20Parameters/ParameterValueTypes"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="datasourcecredentials"
+          lowerBound="1" eType="#//Data%20Source%20Parameters/DataSourceCredentials"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ParameterValueTypes"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataSourceCredentials"/>
+    <eClassifiers xsi:type="ecore:EClass" name="File" eSuperTypes="#//Data%20Source%20Parameters/DataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Database" eSuperTypes="#//Data%20Source%20Parameters/DataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MessageQueue" eSuperTypes="#//Data%20Source%20Parameters/DataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WebApi" eSuperTypes="#//Data%20Source%20Parameters/DataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WebApiCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MessageQueueCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DatabaseCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FileCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
   </eSubpackages>
 </ecore:EPackage>

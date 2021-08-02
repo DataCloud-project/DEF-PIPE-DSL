@@ -59,7 +59,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
-        eType="#//Data%20Source%20Parameters/DataSource" containment="true"/>
+        eType="#//Data%20Source%20Parameters/InputDataSource" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterGroup">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
@@ -83,9 +83,14 @@
   <eClassifiers xsi:type="ecore:EDataType" name="AbstractCondition" instanceClassName="AbstractContition"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Step" instanceTypeName="Step"/>
   <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//StepTemplate"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DataProducer" eSuperTypes="#//StepTemplate"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DataConsumer" eSuperTypes="#//StepTemplate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataSource" eSuperTypes="#//StepTemplate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//InputDataSource"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataSink" eSuperTypes="#//StepTemplate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//InputDataSource"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ForSourceProcessing" instanceTypeName="newDataType8"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="InputDataSource" instanceTypeName="newDataType9"/>
   <eSubpackages name="Trigger">
     <eClassifiers xsi:type="ecore:EClass" name="ScheduleTrigger" eSuperTypes="#//Trigger/Trigger">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -239,9 +244,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ForLoop" eSuperTypes="#//Control%20Parameters/LoopParameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="scriptNameForPreparingSourceForNextExecution"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral="None"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="forPreparingSource" eType="#//ForSourceProcessing"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="forsourceprocessing"
           lowerBound="1" eType="#//Control%20Parameters/ForSourceProcessing"/>
@@ -275,7 +277,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Data Source Parameters">
-    <eClassifiers xsi:type="ecore:EClass" name="DataSource" eSuperTypes="#//Parameter">
+    <eClassifiers xsi:type="ecore:EClass" name="InputDataSource" eSuperTypes="#//Parameter">
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Data%20Source%20Parameters/ParameterValueTypes"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="datasourcecredentials"
@@ -283,10 +285,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ParameterValueTypes"/>
     <eClassifiers xsi:type="ecore:EClass" name="DataSourceCredentials"/>
-    <eClassifiers xsi:type="ecore:EClass" name="File" eSuperTypes="#//Data%20Source%20Parameters/DataSource"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Database" eSuperTypes="#//Data%20Source%20Parameters/DataSource"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MessageQueue" eSuperTypes="#//Data%20Source%20Parameters/DataSource"/>
-    <eClassifiers xsi:type="ecore:EClass" name="WebApi" eSuperTypes="#//Data%20Source%20Parameters/DataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="File" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Database" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MessageQueue" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WebApi" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
     <eClassifiers xsi:type="ecore:EClass" name="WebApiCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
     <eClassifiers xsi:type="ecore:EClass" name="MessageQueueCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
     <eClassifiers xsi:type="ecore:EClass" name="DatabaseCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>

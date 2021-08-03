@@ -31,7 +31,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parametergroup" eType="#//ParameterGroup"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CommunicationMediumTypes">
     <eLiterals name="MESSAGE_QUEUE" literal="MESSAGE_QUEUE"/>
@@ -285,7 +284,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ParameterValueTypes"/>
     <eClassifiers xsi:type="ecore:EClass" name="DataSourceCredentials"/>
-    <eClassifiers xsi:type="ecore:EClass" name="File" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BlockStorage" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
     <eClassifiers xsi:type="ecore:EClass" name="Database" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
     <eClassifiers xsi:type="ecore:EClass" name="MessageQueue" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
     <eClassifiers xsi:type="ecore:EClass" name="WebApi" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
@@ -293,5 +292,9 @@
     <eClassifiers xsi:type="ecore:EClass" name="MessageQueueCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
     <eClassifiers xsi:type="ecore:EClass" name="DatabaseCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
     <eClassifiers xsi:type="ecore:EClass" name="FileCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Ftp" eSuperTypes="#//Data%20Source%20Parameters/BlockStorage"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Sftp" eSuperTypes="#//Data%20Source%20Parameters/BlockStorage"/>
+    <eClassifiers xsi:type="ecore:EClass" name="As4" eSuperTypes="#//Data%20Source%20Parameters/BlockStorage"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Http" eSuperTypes="#//Data%20Source%20Parameters/BlockStorage"/>
   </eSubpackages>
 </ecore:EPackage>

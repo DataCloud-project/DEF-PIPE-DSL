@@ -16,10 +16,11 @@
         upperBound="-1" eType="#//AbstractStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
         eType="#//Control%20Parameters/ControlParemeter"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" eType="#//Deployment%20Parameters/DeploymentParameter"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="more" eType="#//Environment%20Parameters/ExecutionRequirement"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourceprovider" lowerBound="1"
+        upperBound="-1" eType="#//Resource%20Provider/ResourceProvider" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
@@ -90,6 +91,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ForSourceProcessing" instanceTypeName="newDataType8"/>
   <eClassifiers xsi:type="ecore:EDataType" name="InputDataSource" instanceTypeName="newDataType9"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="DeploymentEnvironment" instanceTypeName="newDataType10"/>
   <eSubpackages name="Trigger">
     <eClassifiers xsi:type="ecore:EClass" name="ScheduleTrigger" eSuperTypes="#//Trigger/Trigger">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -219,10 +221,6 @@
           eType="#//Control%20Parameters/AbstractCondition" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//LogicalOperatorType"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ControlParemeter" eSuperTypes="#//Parameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="Loop" eType="#//Control%20Parameters/LoopParameter"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Control%20Parameters/ConditionParameter"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PreCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStepList" lowerBound="1"
           upperBound="-1" eType="#//Control%20Parameters/ConditionStepPair" containment="true"/>
@@ -264,15 +262,9 @@
       <eLiterals name="DIVISION" value="2"/>
       <eLiterals name="MULTIPLY" value="3"/>
     </eClassifiers>
-  </eSubpackages>
-  <eSubpackages name="Deployment Parameters">
-    <eClassifiers xsi:type="ecore:EClass" name="DeploymentParameter" eSuperTypes="#//Parameter">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="layer" eType="#//DeploymentLayers"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="DeploymentLayers">
-      <eLiterals name="EDGE" value="1"/>
-      <eLiterals name="FOG" value="1"/>
-      <eLiterals name="CLOUD" value="2"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ControlParemeter" eSuperTypes="#//Parameter">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Loop" eType="#//Control%20Parameters/LoopParameter"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Control%20Parameters/ConditionParameter"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Data Source Parameters">
@@ -291,10 +283,17 @@
     <eClassifiers xsi:type="ecore:EClass" name="WebApiCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
     <eClassifiers xsi:type="ecore:EClass" name="MessageQueueCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
     <eClassifiers xsi:type="ecore:EClass" name="DatabaseCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
-    <eClassifiers xsi:type="ecore:EClass" name="FileCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BlockStorageCredential" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
     <eClassifiers xsi:type="ecore:EClass" name="Ftp" eSuperTypes="#//Data%20Source%20Parameters/BlockStorage"/>
     <eClassifiers xsi:type="ecore:EClass" name="Sftp" eSuperTypes="#//Data%20Source%20Parameters/BlockStorage"/>
-    <eClassifiers xsi:type="ecore:EClass" name="As4" eSuperTypes="#//Data%20Source%20Parameters/BlockStorage"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Http" eSuperTypes="#//Data%20Source%20Parameters/BlockStorage"/>
+  </eSubpackages>
+  <eSubpackages name="Resource Provider">
+    <eClassifiers xsi:type="ecore:EClass" name="ResourceProvider" eSuperTypes="#//Parameter">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="providerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CloudProvider" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FogProvider" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
   </eSubpackages>
 </ecore:EPackage>

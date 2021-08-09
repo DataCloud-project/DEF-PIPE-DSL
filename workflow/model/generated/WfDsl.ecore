@@ -16,8 +16,7 @@
         upperBound="-1" eType="#//AbstractStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
         eType="#//Control%20Parameters/ControlParemeter"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentParams" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="more" eType="#//Environment%20Parameters/ExecutionRequirement"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requirement" eType="#//Environment%20Parameters/ExecutionRequirement"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resourceprovider" lowerBound="1"
         upperBound="-1" eType="#//Resource%20Provider/ResourceProvider" containment="true"/>
@@ -27,7 +26,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StepImplementation"/>
   <eClassifiers xsi:type="ecore:EClass" name="DockerImplementation" eSuperTypes="#//StepImplementation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
@@ -110,9 +108,7 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Environment Parameters">
-    <eClassifiers xsi:type="ecore:EClass" name="ExecutionRequirement" eSuperTypes="#//Parameter">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExecutionRequirement" eSuperTypes="#//Parameter"/>
     <eClassifiers xsi:type="ecore:EClass" name="HardParameters" abstract="true" eSuperTypes="#//Environment%20Parameters/ExecutionRequirement"/>
     <eClassifiers xsi:type="ecore:EClass" name="SoftParameters" abstract="true" eSuperTypes="#//Environment%20Parameters/ExecutionRequirement"/>
     <eClassifiers xsi:type="ecore:EClass" name="Metric" abstract="true">
@@ -294,6 +290,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CloudProvider" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
     <eClassifiers xsi:type="ecore:EClass" name="FogProvider" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
+    <eClassifiers xsi:type="ecore:EClass" name="EdgeProvider" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
   </eSubpackages>
 </ecore:EPackage>

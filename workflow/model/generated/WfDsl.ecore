@@ -7,6 +7,9 @@
         upperBound="-1" eType="#//AbstractStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="communicationMedium" eType="#//CommunicationMedium"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="environmentparameters"
+        upperBound="-1" eType="#//Environment%20Parameters/EnvironmentParameters"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractStep" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -83,7 +86,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="AbstractCondition" instanceClassName="AbstractContition"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Step" instanceTypeName="Step"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//StepTemplate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataProcesssingStep" eSuperTypes="#//StepTemplate"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataSource" eSuperTypes="#//StepTemplate">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//InputDataSource"/>
   </eClassifiers>
@@ -112,6 +115,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="Polling" eSuperTypes="#//Trigger/Trigger">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfRetries" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PollDatabase" eSuperTypes="#//Trigger/Polling">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="credential" eType="#//Trigger/DatabaseCredentials"/>
@@ -133,8 +137,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="HardRequirements" abstract="true"
         eSuperTypes="#//Execution%20Requirements/ExecutionRequirement"/>
     <eClassifiers xsi:type="ecore:EClass" name="SoftRequirements" abstract="true"
-        eSuperTypes="#//Execution%20Requirements/ExecutionRequirement"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Metric" abstract="true">
+        eSuperTypes="#//Execution%20Requirements/ExecutionRequirement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Metric">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueDirection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EShort"
           defaultValueLiteral="0"/>
@@ -145,7 +151,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="optimisationFunction"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="MINIMIZE"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="metric" eType="#//Execution%20Requirements/Metric"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="metric" lowerBound="1"
+          eType="#//Execution%20Requirements/Metric"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HardwareRequirements" abstract="true"
         eSuperTypes="#//Execution%20Requirements/HardRequirements"/>
@@ -226,13 +233,17 @@
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxBenchmark" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="0"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NetworkRequirements" eSuperTypes="#//Execution%20Requirements/HardwareRequirements">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minBandwidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+          defaultValueLiteral="0.0"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxBandwidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minLatency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLatency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="QualitativeHardwareRequirements" eSuperTypes="#//Execution%20Requirements/HardwareRequirements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuArchitecture" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="gpuArchitecture" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NetworkRequirements" eSuperTypes="#//Execution%20Requirements/HardRequirements">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="bandwidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="latency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataTransfered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="Control Parameters">

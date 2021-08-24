@@ -4,35 +4,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="Pipeline">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="abstractstep" lowerBound="1"
-        upperBound="-1" eType="#//AbstractStep"/>
+        upperBound="-1" eType="#//newPackage7/AbstractStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="communicationMedium" eType="#//CommunicationMedium"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="environmentparameters"
         upperBound="-1" eType="#//Environment%20Parameters/EnvironmentParameters"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractStep" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
-        eType="#//Trigger/Trigger" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="previous" unique="false"
-        upperBound="-1" eType="#//AbstractStep"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
-        eType="#//Control%20Parameters/ControlParemeter"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="executionRequirements"
-        eType="#//Execution%20Requirements/ExecutionRequirement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resourceProvider" lowerBound="1"
-        upperBound="-1" eType="#//Resource%20Provider/ResourceProvider" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="environmentParameters"
-        upperBound="-1" eType="#//Environment%20Parameters/EnvironmentParameters"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StepImplementation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DockerImplementation" eSuperTypes="#//StepImplementation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -55,16 +35,6 @@
     <eLiterals name="FOG" value="1"/>
     <eLiterals name="CLOUD" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompositeStep" eSuperTypes="#//AbstractStep">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1" upperBound="-1"
-        eType="#//AbstractStep" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StepTemplate" eSuperTypes="#//AbstractStep">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
-        eType="#//Data%20Source%20Parameters/InputDataSource" containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterGroup">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
         eType="#//Parameter" containment="true"/>
@@ -86,13 +56,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="AbstractCondition" instanceClassName="AbstractContition"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Step" instanceTypeName="Step"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DataProcesssingStep" eSuperTypes="#//StepTemplate"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DataSource" eSuperTypes="#//StepTemplate">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//InputDataSource"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataSink" eSuperTypes="#//StepTemplate">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//InputDataSource"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IterationProcessing" instanceTypeName="newDataType8"/>
   <eClassifiers xsi:type="ecore:EDataType" name="InputDataSource" instanceTypeName="newDataType9"/>
   <eClassifiers xsi:type="ecore:EDataType" name="DeploymentEnvironment" instanceTypeName="newDataType10"/>
@@ -339,6 +302,45 @@
   <eSubpackages name="Environment Parameters">
     <eClassifiers xsi:type="ecore:EClass" name="EnvironmentParameters" eSuperTypes="#//Parameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="newPackage7">
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractStep" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
+          eType="#//Trigger/Trigger" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="previous" unique="false"
+          upperBound="-1" eType="#//newPackage7/AbstractStep"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
+          eType="#//Control%20Parameters/ControlParemeter"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="executionRequirements"
+          eType="#//Execution%20Requirements/ExecutionRequirement" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resourceProvider" lowerBound="1"
+          upperBound="-1" eType="#//Resource%20Provider/ResourceProvider" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="environmentParameters"
+          upperBound="-1" eType="#//Environment%20Parameters/EnvironmentParameters"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DockerImplementation" eSuperTypes="#//newPackage7/StepImplementation">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CompositeStep" eSuperTypes="#//newPackage7/AbstractStep">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1"
+          upperBound="-1" eType="#//newPackage7/AbstractStep" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StepTemplate" eSuperTypes="#//newPackage7/AbstractStep">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//newPackage7/StepImplementation"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
+          eType="#//Data%20Source%20Parameters/InputDataSource" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StepImplementation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataProcesssingStep" eSuperTypes="#//newPackage7/StepTemplate"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DataSink" eSuperTypes="#//newPackage7/StepTemplate">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//InputDataSource"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DataSource" eSuperTypes="#//newPackage7/StepTemplate">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//InputDataSource"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

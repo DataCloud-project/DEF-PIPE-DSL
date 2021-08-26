@@ -18,6 +18,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CommunicationMediumTypes">
     <eLiterals name="MESSAGE_QUEUE" literal="MESSAGE_QUEUE"/>
@@ -297,6 +298,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ResourceProvider" eSuperTypes="#//Parameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="providerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="locationMapping" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CloudProvider" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
     <eClassifiers xsi:type="ecore:EClass" name="FogProvider" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>

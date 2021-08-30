@@ -208,7 +208,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="minLatency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLatency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="QualitativeHardwareRequirements" eSuperTypes="#//Execution%20Requirements/HardwareRequirements">
+    <eClassifiers xsi:type="ecore:EClass" name="ArchitectureRequirements" eSuperTypes="#//Execution%20Requirements/HardwareRequirements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuArchitecture" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="gpuArchitecture" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -276,12 +276,9 @@
   </eSubpackages>
   <eSubpackages name="Data Source Parameters">
     <eClassifiers xsi:type="ecore:EClass" name="InputDataSource" eSuperTypes="#//Parameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Data%20Source%20Parameters/ParameterValueTypes"
-          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="datasourcecredentials"
           lowerBound="1" eType="#//Data%20Source%20Parameters/DataSourceCredentials"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ParameterValueTypes"/>
     <eClassifiers xsi:type="ecore:EClass" name="DataSourceCredentials"/>
     <eClassifiers xsi:type="ecore:EClass" name="BlockStorage" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
     <eClassifiers xsi:type="ecore:EClass" name="Database" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
@@ -336,8 +333,6 @@
     <eClassifiers xsi:type="ecore:EClass" name="StepTemplate" eSuperTypes="#//Step%20Package/AbstractStep">
       <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//Step%20Package/StepImplementation"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
-          eType="#//Data%20Source%20Parameters/InputDataSource" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StepImplementation"/>
     <eClassifiers xsi:type="ecore:EClass" name="DataProcesssingStep" eSuperTypes="#//Step%20Package/StepTemplate"/>

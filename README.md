@@ -2,6 +2,6 @@
 
 [![GitHub Issues](https://img.shields.io/github/issues/DataCloud-project/wf-dsl.svg)](https://github.com/DataCloud-project/wf-dsl/issues)
 
-# wf-dsl
+# DSL for Big Data Pipelines
 
-DSL for event-based data workflow 
+Domain-Specific Language (DSL) for defining Big Data Pipeplines. DEF-PIPE provides tooling that allows you to define Big Data Pipelines according to the DSL.

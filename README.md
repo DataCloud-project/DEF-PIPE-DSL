@@ -16,9 +16,9 @@ DEF-PIPE provides tooling that allows you to define Big Data Pipelines according
 
 ## Requirements
 
-The DSL is developed using **Eclipse Modeling Framework (EMF) 2.28**. Other versions are not guaranteed to work correctly.
-The EMF project is a modeling framework and code generation facility for building tools and other applications based on a structured data model.
-In this project the core metamodel is technically represented as an ECore model, which is organised into several smaller packages. each of these packages reflects a specific aspect of our DSL.
+The DSL is developed using [Eclipse Modeling Framework (EMF) 2.28](https://download.eclipse.org/modeling/emf/emf/builds/release/2.28/index.html). Other versions are not guaranteed to work correctly.
+
+The EMF project is a modeling framework and code generation facility for building tools and other applications based on a structured data model. In this project the core metamodel is technically represented as an ECore model, which is organised into several smaller packages. Each of these packages reflects a specific aspect of our DSL.
 
 ### To install EMF 
 

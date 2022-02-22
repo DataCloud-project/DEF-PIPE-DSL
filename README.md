@@ -5,7 +5,7 @@
 
 # DSL for Big Data Pipelines
 
-Domain-Specific Language (DSL) for defining Big Data Pipeplines. the developed DSL supports a separation of concerns between design and run-time issues; supports reuse of previously developed steps and pipelines in designing new pipelines; supports a flexible and smooth data transfer between steps and applying containerization for nodes and pipeline descriptions. DEF-PIPE provides tooling that allows you to define Big Data Pipelines according to the DSL.
+Domain-Specific Language (DSL) for defining Big Data Pipeplines. The developed DSL supports a separation of concerns between design and run-time issues; supports reuse of previously developed steps and pipelines in designing new pipelines; supports a flexible and smooth data transfer between steps and applying containerization for nodes and pipeline descriptions. DEF-PIPE provides tooling that allows you to define Big Data Pipelines according to the DSL.
 
 ## Requirements
 

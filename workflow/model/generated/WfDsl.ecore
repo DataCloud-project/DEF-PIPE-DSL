@@ -8,8 +8,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="communicationMedium" eType="#//CommunicationMedium"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="environmentparameters"
-        upperBound="-1" eType="#//Environment%20Parameters/EnvironmentParameters"
-        containment="true"/>
+        upperBound="-1" eType="#//EnvironmentParameters/EnvironmentParameters" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractStep" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -18,20 +17,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="previous" unique="false"
         upperBound="-1" eType="#//AbstractStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
-        eType="#//Control%20Parameters/ControlParemeter"/>
+        eType="#//ControlParameters/ControlParemeter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="executionRequirements"
-        eType="#//Execution%20Requirements/ExecutionRequirement" containment="true"/>
+        eType="#//ExecutionRequirements/ExecutionRequirement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resourceProvider" lowerBound="1"
-        upperBound="-1" eType="#//Resource%20Provider/ResourceProvider" containment="true"/>
+        upperBound="-1" eType="#//ResourceProvider/ResourceProvider" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="environmentParameters"
-        upperBound="-1" eType="#//Environment%20Parameters/EnvironmentParameters"
+        upperBound="-1" eType="#//EnvironmentParameters/EnvironmentParameters" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StepImplementation"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DockerImplementation" eSuperTypes="#//StepImplementation">
+  <eClassifiers xsi:type="ecore:EClass" name="ContainerImplementation" eSuperTypes="#//AbstractStep">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
@@ -60,10 +60,8 @@
         eType="#//AbstractStep" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StepTemplate" eSuperTypes="#//AbstractStep">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="params" upperBound="-1"
-        eType="#//Data%20Source%20Parameters/InputDataSource" containment="true"/>
+        eType="#//DataSourceParameters/InputDataSource" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterGroup">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
@@ -86,17 +84,18 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="AbstractCondition" instanceClassName="AbstractContition"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Step" instanceTypeName="Step"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DataProcesssingStep" eSuperTypes="#//StepTemplate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataProcesssing" eSuperTypes="#//StepTemplate"/>
   <eClassifiers xsi:type="ecore:EClass" name="DataSource" eSuperTypes="#//StepTemplate">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//InputDataSource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataSink" eSuperTypes="#//StepTemplate">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//InputDataSource"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataSource" eType="#//OutputDataSource"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IterationProcessing" instanceTypeName="newDataType8"/>
   <eClassifiers xsi:type="ecore:EDataType" name="InputDataSource" instanceTypeName="newDataType9"/>
   <eClassifiers xsi:type="ecore:EDataType" name="DeploymentEnvironment" instanceTypeName="newDataType10"/>
-  <eSubpackages name="Trigger">
+  <eClassifiers xsi:type="ecore:EDataType" name="OutputDataSource" instanceTypeName="newDataType9"/>
+  <eSubpackages name="Trigger" nsURI="http://www.WfDsl.workflow.Trigger" nsPrefix="Trigger">
     <eClassifiers xsi:type="ecore:EClass" name="ScheduleTrigger" eSuperTypes="#//Trigger/Trigger">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -119,7 +118,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PollDatabase" eSuperTypes="#//Trigger/Polling">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="credential" eType="#//Trigger/DatabaseCredentials"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="queryScriptName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="queryScript" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PollMessageQueue" eSuperTypes="#//Trigger/Polling">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="credential" eType="#//Trigger/MessageQueueCredentials"/>
@@ -132,12 +131,13 @@
     <eClassifiers xsi:type="ecore:EDataType" name="WebApiCredentials" instanceTypeName="newDataType2"/>
     <eClassifiers xsi:type="ecore:EDataType" name="MessageQueueCredentials" instanceTypeName="newDataType3"/>
   </eSubpackages>
-  <eSubpackages name="Execution Requirements">
+  <eSubpackages name="ExecutionRequirements" nsURI="http://www.WfDsl.workflow.ExecutionRequirements"
+      nsPrefix="ExecutionRequirements">
     <eClassifiers xsi:type="ecore:EClass" name="ExecutionRequirement" eSuperTypes="#//Parameter"/>
     <eClassifiers xsi:type="ecore:EClass" name="HardRequirements" abstract="true"
-        eSuperTypes="#//Execution%20Requirements/ExecutionRequirement"/>
+        eSuperTypes="#//ExecutionRequirements/ExecutionRequirement"/>
     <eClassifiers xsi:type="ecore:EClass" name="SoftRequirements" abstract="true"
-        eSuperTypes="#//Execution%20Requirements/ExecutionRequirement">
+        eSuperTypes="#//ExecutionRequirements/ExecutionRequirement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Metric">
@@ -147,15 +147,15 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVariable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OptimizationRequirements" eSuperTypes="#//Execution%20Requirements/SoftRequirements">
+    <eClassifiers xsi:type="ecore:EClass" name="OptimizationRequirements" eSuperTypes="#//ExecutionRequirements/SoftRequirements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="optimisationFunction"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
           defaultValueLiteral="MINIMIZE"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="metric" lowerBound="1"
-          eType="#//Execution%20Requirements/Metric"/>
+          eType="#//ExecutionRequirements/Metric"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HardwareRequirements" abstract="true"
-        eSuperTypes="#//Execution%20Requirements/HardRequirements"/>
+        eSuperTypes="#//ExecutionRequirements/HardRequirements"/>
     <eClassifiers xsi:type="ecore:EClass" name="ServiceLevelCondition">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperator" eType="#//ComparisonOperatorType"
@@ -164,90 +164,89 @@
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="validity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="HorizontalScaleRequirements" eSuperTypes="#//Execution%20Requirements/ScaleRequirements">
+    <eClassifiers xsi:type="ecore:EClass" name="HorizontalScaleRequirements" eSuperTypes="#//ExecutionRequirements/ScaleRequirements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="minInstance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxInstance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SecurityRequirements" abstract="true"
-        eSuperTypes="#//Execution%20Requirements/HardRequirements"/>
-    <eClassifiers xsi:type="ecore:EClass" name="OSRequirements" eSuperTypes="#//Execution%20Requirements/OSOrImageRequirements">
+        eSuperTypes="#//ExecutionRequirements/HardRequirements"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OSRequirements" eSuperTypes="#//ExecutionRequirements/OSOrImageRequirements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="osType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="is64os" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ServiceLevelObjective" eSuperTypes="#//Execution%20Requirements/HardRequirements">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="costumServiceLevel" eType="#//Execution%20Requirements/ServiceLevelCondition"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ServiceLevelObjective" eSuperTypes="#//ExecutionRequirements/HardRequirements">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="costumServiceLevel" eType="#//ExecutionRequirements/ServiceLevelCondition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SecurityControl">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="securityParameters" eType="#//Execution%20Requirements/SecurityRequirements"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="securityParameters" eType="#//ExecutionRequirements/SecurityRequirements"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QuantitativeHardwareRequirements"
-        eSuperTypes="#//Execution%20Requirements/HardwareRequirements">
+        eSuperTypes="#//ExecutionRequirements/HardwareRequirements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="minCpu" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCpu" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="0"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minRam" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minRamMiB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxRam" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxRamMiB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minStorage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minStorageMB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxStorage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxStorageMB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuFrequency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuNumberOfCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="gpuAvailability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ScaleRequirements" abstract="true"
-        eSuperTypes="#//Execution%20Requirements/HardRequirements"/>
+        eSuperTypes="#//ExecutionRequirements/HardRequirements"/>
     <eClassifiers xsi:type="ecore:EClass" name="OSOrImageRequirements" abstract="true"
-        eSuperTypes="#//Execution%20Requirements/HardRequirements"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ImageRequirements" eSuperTypes="#//Execution%20Requirements/OSOrImageRequirements">
+        eSuperTypes="#//ExecutionRequirements/HardRequirements"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ImageRequirements" eSuperTypes="#//ExecutionRequirements/OSOrImageRequirements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="VerticalScaleRequirements" eSuperTypes="#//Execution%20Requirements/ScaleRequirements">
+    <eClassifiers xsi:type="ecore:EClass" name="VerticalScaleRequirements" eSuperTypes="#//ExecutionRequirements/ScaleRequirements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="minCpu" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCpu" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="0"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minRam" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minRamMiB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxRam" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxRamMiB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="minCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minStorage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minStorageMB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxStorage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxStorageMB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="0"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="QualitativeHardwareRequirements" eSuperTypes="#//Execution%20Requirements/HardwareRequirements">
+    <eClassifiers xsi:type="ecore:EClass" name="QualitativeHardwareRequirements" eSuperTypes="#//ExecutionRequirements/HardwareRequirements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="minBenchmark" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxBenchmark" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="0"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuArchitecture" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="gpuArchitecture" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NetworkRequirements" eSuperTypes="#//Execution%20Requirements/HardwareRequirements">
+    <eClassifiers xsi:type="ecore:EClass" name="NetworkRequirements" eSuperTypes="#//ExecutionRequirements/HardwareRequirements">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="minBandwidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="0.0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxBandwidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="minLatency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLatency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="QualitativeHardwareRequirements" eSuperTypes="#//Execution%20Requirements/HardwareRequirements">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuArchitecture" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="gpuArchitecture" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Control Parameters">
-    <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//Control%20Parameters/AbstractCondition">
+  <eSubpackages name="ControlParameters" nsURI="http://www.WfDsl.workflow.ControlParameters"
+      nsPrefix="ControlParameters">
+    <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//ControlParameters/AbstractCondition">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparatorOperator" eType="#//ComparisonOperatorType"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -258,43 +257,43 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AbstractCondition" instanceClassName="AbstractCondition"
         abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="CompositeCondition" eSuperTypes="#//Control%20Parameters/AbstractCondition">
+    <eClassifiers xsi:type="ecore:EClass" name="CompositeCondition" eSuperTypes="#//ControlParameters/AbstractCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
-          eType="#//Control%20Parameters/AbstractCondition" containment="true"/>
+          eType="#//ControlParameters/AbstractCondition" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//LogicalOperatorType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PreCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStepList" lowerBound="1"
-          upperBound="-1" eType="#//Control%20Parameters/ConditionStepPair" containment="true"/>
+          upperBound="-1" eType="#//ControlParameters/ConditionStepPair" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//LogicalOperatorType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PostCondition">
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStepList" lowerBound="1"
-          upperBound="-1" eType="#//Control%20Parameters/ConditionStepPair" containment="true"/>
+          upperBound="-1" eType="#//ControlParameters/ConditionStepPair" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConditionStepPair">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="step" eType="#//Step"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WhileLooop" eSuperTypes="#//Control%20Parameters/LoopParameter">
+    <eClassifiers xsi:type="ecore:EClass" name="WhileLooop" eSuperTypes="#//ControlParameters/LoopParameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//AbstractCondition"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="atLeastOnce" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
           defaultValueLiteral="false"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ForLoop" eSuperTypes="#//Control%20Parameters/LoopParameter">
+    <eClassifiers xsi:type="ecore:EClass" name="ForLoop" eSuperTypes="#//ControlParameters/LoopParameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
           defaultValueLiteral="0"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
           defaultValueLiteral="1"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//Control%20Parameters/OperatorType"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//ControlParameters/OperatorType"
           defaultValueLiteral="INCREMENT"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LoopParameter"/>
     <eClassifiers xsi:type="ecore:EClass" name="ConditionParameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pre" eType="#//Control%20Parameters/PreCondition"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="post" eType="#//Control%20Parameters/PostCondition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pre" eType="#//ControlParameters/PreCondition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="post" eType="#//ControlParameters/PostCondition"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="OperatorType">
       <eLiterals name="INCREMENT"/>
@@ -303,40 +302,43 @@
       <eLiterals name="MULTIPLY" value="3"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ControlParemeter" eSuperTypes="#//Parameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="loop" eType="#//Control%20Parameters/LoopParameter"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Control%20Parameters/ConditionParameter"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="loop" eType="#//ControlParameters/LoopParameter"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//ControlParameters/ConditionParameter"/>
     </eClassifiers>
   </eSubpackages>
-  <eSubpackages name="Data Source Parameters">
+  <eSubpackages name="DataSourceParameters" nsURI="http://www.WfDsl.workflow.DataSourceParameters"
+      nsPrefix="DataSourceParameters">
     <eClassifiers xsi:type="ecore:EClass" name="InputDataSource" eSuperTypes="#//Parameter">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Data%20Source%20Parameters/ParameterValueTypes"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//DataSourceParameters/ParameterValueTypes"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="datasourcecredentials"
-          lowerBound="1" eType="#//Data%20Source%20Parameters/DataSourceCredentials"/>
+          lowerBound="1" eType="#//DataSourceParameters/DataSourceCredentials"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ParameterValueTypes"/>
     <eClassifiers xsi:type="ecore:EClass" name="DataSourceCredentials"/>
-    <eClassifiers xsi:type="ecore:EClass" name="BlockStorage" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Database" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MessageQueue" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
-    <eClassifiers xsi:type="ecore:EClass" name="WebApi" eSuperTypes="#//Data%20Source%20Parameters/InputDataSource"/>
-    <eClassifiers xsi:type="ecore:EClass" name="WebApiCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
-    <eClassifiers xsi:type="ecore:EClass" name="MessageQueueCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
-    <eClassifiers xsi:type="ecore:EClass" name="DatabaseCredentials" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
-    <eClassifiers xsi:type="ecore:EClass" name="BlockStorageCredential" eSuperTypes="#//Data%20Source%20Parameters/DataSourceCredentials"/>
-    <eClassifiers xsi:type="ecore:EClass" name="FTP" eSuperTypes="#//Data%20Source%20Parameters/BlockStorage"/>
-    <eClassifiers xsi:type="ecore:EClass" name="SFTP" eSuperTypes="#//Data%20Source%20Parameters/BlockStorage"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BlockStorage" eSuperTypes="#//DataSourceParameters/InputDataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Database" eSuperTypes="#//DataSourceParameters/InputDataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MessageQueue" eSuperTypes="#//DataSourceParameters/InputDataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WebApi" eSuperTypes="#//DataSourceParameters/InputDataSource"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WebApiCredentials" eSuperTypes="#//DataSourceParameters/DataSourceCredentials"/>
+    <eClassifiers xsi:type="ecore:EClass" name="MessageQueueCredentials" eSuperTypes="#//DataSourceParameters/DataSourceCredentials"/>
+    <eClassifiers xsi:type="ecore:EClass" name="DatabaseCredentials" eSuperTypes="#//DataSourceParameters/DataSourceCredentials"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BlockStorageCredential" eSuperTypes="#//DataSourceParameters/DataSourceCredentials"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FTP" eSuperTypes="#//DataSourceParameters/BlockStorage"/>
+    <eClassifiers xsi:type="ecore:EClass" name="SFTP" eSuperTypes="#//DataSourceParameters/BlockStorage"/>
   </eSubpackages>
-  <eSubpackages name="Resource Provider">
+  <eSubpackages name="ResourceProvider" nsURI="http://www.WfDsl.workflow.ResourceProvider"
+      nsPrefix="ResourceProvider">
     <eClassifiers xsi:type="ecore:EClass" name="ResourceProvider" eSuperTypes="#//Parameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="providerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="CloudProvider" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
-    <eClassifiers xsi:type="ecore:EClass" name="FogProvider" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
-    <eClassifiers xsi:type="ecore:EClass" name="EdgeProvider" eSuperTypes="#//Resource%20Provider/ResourceProvider"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CloudProvider" eSuperTypes="#//ResourceProvider/ResourceProvider"/>
+    <eClassifiers xsi:type="ecore:EClass" name="FogProvider" eSuperTypes="#//ResourceProvider/ResourceProvider"/>
+    <eClassifiers xsi:type="ecore:EClass" name="EdgeProvider" eSuperTypes="#//ResourceProvider/ResourceProvider"/>
   </eSubpackages>
-  <eSubpackages name="Environment Parameters">
+  <eSubpackages name="EnvironmentParameters" nsURI="http://www.WfDsl.workflow.EnvironmentParameters"
+      nsPrefix="EnvironmentParameters">
     <eClassifiers xsi:type="ecore:EClass" name="EnvironmentParameters" eSuperTypes="#//Parameter">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>

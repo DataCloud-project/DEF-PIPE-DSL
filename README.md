@@ -32,15 +32,15 @@ Follow these steps to load the EMF project and open the EMF diagrams:
 
 3. Select "File" -> "Open projects from file system" and import the following projects.
 
-    ![alt text](https://raw.githubusercontent.com/DataCloud-project/DEF-PIPE-DSL/main/docs/eclipse-import-projects.png)
+    ![alt text](https://raw.githubusercontent.com/DataCloud-project/DEF-PIPE-DSL/master/docs/eclipse-import-projects.png)
 
 4. Select "Window" -> "Perspective" -> "Open Perspective" -> "Other" and select the "Modeling (default)".
 
-    ![alt text](https://raw.githubusercontent.com/DataCloud-project/DEF-PIPE-DSL/main/docs/eclipse-open-perspective-modeling.png)
+    ![alt text](https://raw.githubusercontent.com/DataCloud-project/DEF-PIPE-DSL/master/docs/eclipse-open-perspective-modeling.png)
 
 5. Navigate to the file "workflow/model/generated/WfDsl.aird" and double click on it. After this you will then be able to navigate to the sub-folder "Representations per category" where you will be able to open the EMF diagrams, i.e., the "wfDsl class diagram" as shown below.
 
-    ![alt text](https://raw.githubusercontent.com/DataCloud-project/DEF-PIPE-DSL/main/docs/eclipse-wfdsl-class-diagram.png)
+    ![alt text](https://raw.githubusercontent.com/DataCloud-project/DEF-PIPE-DSL/master/docs/eclipse-wfdsl-class-diagram.png)
 
 ### Troubleshooting
 
@@ -48,7 +48,7 @@ If you have problems selecting the Model Perspective, you may need to re-initial
 
 1. Navigate to the file "workflow/model/generated/WfDsl.ecore", right click and select "Initialize Ecore Diagram..."
 
-    ![alt text](https://raw.githubusercontent.com/DataCloud-project/DEF-PIPE-DSL/main/docs/eclipse-initialize-ecore-diagram.png)
+    ![alt text](https://raw.githubusercontent.com/DataCloud-project/DEF-PIPE-DSL/master/docs/eclipse-initialize-ecore-diagram.png)
 
 2. Select the default options suggested by the "Create representation" wizard, i.e., output file named "WfDsl.aird" and "Entities in a Class Diagram".
 

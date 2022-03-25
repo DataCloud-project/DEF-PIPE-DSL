@@ -20,6 +20,10 @@ In order load the DSL project you will need to install the [Eclipse IDE](https:/
 
 We recommend using release 2021-12 of the [Eclipse Installer](https://www.eclipse.org/downloads/packages/release/2021-12/r). During the installation, select the bundle [Eclipse Modeling Tools](https://www.eclipse.org/downloads/packages/release/2021-12/r/eclipse-modeling-tools) as this contains the [Eclipse Modeling Framework (EMF)](https://www.eclipse.org/modeling/emf/) package that is used to define DSL.
 
+## Model Serialization (GRAMMAR)
+
+The grammar of the DSL is located at https://github.com/DataCloud-project/DEF-PIPE-DSL/blob/master/Grammar/DSL-Grammar.txt
+
 ## Loading the EMF project in Eclipse
 
 The EMF project is a modeling framework and code generation facility for building tools and other applications based on a structured data model. In this project the core metamodel is technically represented as an ECore model, which is organised into several smaller packages. Each of these packages reflects a specific aspect of our DSL. The DSL is developed using [EMF version 2.28](https://download.eclipse.org/modeling/emf/emf/builds/release/2.28/index.html) which comes installed with recommended 2021-12 release of the Eclipse Modeling Tools bundle. Other versions are not guaranteed to work correctly.
@@ -52,9 +56,4 @@ If you have problems selecting the Model Perspective, you may need to re-initial
 
 2. Select the default options suggested by the "Create representation" wizard, i.e., output file named "WfDsl.aird" and "Entities in a Class Diagram".
 
-3. Select the Model Perspective 
-
-
-## Model Serialization (GRAMMAR)
-
-The grammar of the DSL is located at https://github.com/DataCloud-project/DEF-PIPE-DSL/blob/master/Grammar/DSL-Grammar.txt
+3. Select the "Modeling (default)" perspective as explained in step 4 above.

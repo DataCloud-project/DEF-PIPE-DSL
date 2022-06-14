@@ -31,6 +31,7 @@ StepTypes: 'data-source' | 'data-processing' | 'data-sink';
 
 SubPipeline: 'subPipeline' name=[SubPipelineDefinition]
 	('implementation:' implementation = StepImplementation)
+	('environmentParameters:' '{' (params += EnvironmentParameter (',' params += EnvironmentParameter)*) '}')?
 	('dataSource:' dataSource = [InputDataSourceDefinition])?
 	('triggers:' (triggers += Trigger (',' triggers += Trigger)*)+ )?
 	('resourceProvider:' resourceProvider=[ResourceProviderDefinition])?
@@ -41,6 +42,7 @@ SubPipeline: 'subPipeline' name=[SubPipelineDefinition]
 
 Step: 'step' name=ID
 		('implementation:' implementation = StepImplementation)?
+		('environmentParameters:' '{' (params += EnvironmentParameter (',' params += EnvironmentParameter)*) '}')?
 		('dataSource:' dataSource = [InputDataSourceDefinition])?
 		('triggers:' (triggers += Trigger (',' triggers += Trigger)*)+ )?
 		('resourceProvider:' resourceProvider=[ResourceProviderDefinition])?

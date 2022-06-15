@@ -30,7 +30,7 @@ CommunicationMedium:	'medium' type = CommunicationMediumTypes;
 StepTypes: 'data-source' | 'data-processing' | 'data-sink';
 
 SubPipeline: 'subPipeline' name=[SubPipelineDefinition]
-	('implementation:' implementation = StepImplementation)
+	('implementation:' implementation = StepImplementation)?
 	('environmentParameters:' '{' (params += EnvironmentParameter (',' params += EnvironmentParameter)*) '}')?
 	('dataSource:' dataSource = [InputDataSourceDefinition])?
 	('triggers:' (triggers += Trigger (',' triggers += Trigger)*)+ )?

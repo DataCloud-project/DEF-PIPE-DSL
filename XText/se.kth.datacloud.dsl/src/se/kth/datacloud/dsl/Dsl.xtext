@@ -1,0 +1,319 @@
+grammar se.kth.datacloud.dsl.Dsl with org.eclipse.xtext.common.Terminals
+
+//generate dsl "http://www.kth.se/datacloud/dsl/Dsl"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://www.example.org/wfDsl" as wfDSL
+import "http://www.example.org/wfDsl/EnvironmentParameters" as environmentParameters
+import "http://www.example.org/wfDsl/ExecutionRequirements" as executionRequirements
+import "http://www.example.org/wfDsl/DataSourceParameters" as datasourceParameters
+import "http://www.example.org/wfDsl/ResourceProvider" as resourceProvider
+import "http://www.example.org/wfDsl/Trigger" as trigger
+
+
+PipelineTemplate returns wfDSL::PipelineTemplate: 
+	Pipeline | SubPipeline
+;
+
+Pipeline returns wfDSL::Pipeline:
+	'Pipeline'
+	name = ID
+	'{'		
+		('communicationMedium:' communicationMedium = CommunicationMedium)
+		('parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}' )? 		
+		('steps:'
+			(abstractstep += AbstractStep (abstractstep += AbstractStep)*)
+		)
+	'}'
+;
+
+
+SubPipeline returns wfDSL::SubPipeline:
+	'SubPipeline'
+	name = ID
+	'{'		
+		('communicationMedium:' communicationMedium = CommunicationMedium)
+		('parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}')? 		
+		('steps:'
+			(abstractstep += AbstractStep (abstractstep += AbstractStep)*)
+		)
+	'}'
+;
+		
+		
+CommunicationMedium returns wfDSL::CommunicationMedium:
+	'medium' type = CommunicationMediumTypes;
+	
+	
+enum CommunicationMediumTypes returns wfDSL::CommunicationMediumTypes:
+ 	MESSAGE_QUEUE | DISTRIBUTED_FILE_SYSTEM | WEB_SERVICE;
+ 	
+
+EnvironmentParameters returns environmentParameters::EnvironmentParameters:
+	(name=ID ( ':' value = STRING)?);
+
+AbstractStep returns wfDSL::AbstractStep: 
+	DataSink | DataSource | DataProcessingStep | CompositeStep
+;
+
+
+DataSink returns wfDSL::DataSink:
+	'-'  'data-sink' 'step' name=ID 
+	('parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}')? 		
+	('execution-parameters:' '{' executionRequirements = ExecutionRequirements '}' )?	
+	('resource-provider:' '{' (resourceProvider += ResourceProvider (',' resourceProvider += ResourceProvider)*) '}')? 		
+	('data-source:' '{' (dataSource += InputDataSource (',' dataSource += InputDataSource)*) '}')? 		
+	('trigger:' '{' (triggers += Trigger (',' triggers += Trigger)*) '}')?	
+;
+
+DataSource returns wfDSL::DataSource:
+	'-' 'data-source' 'step' name=ID
+	('parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}')? 			
+	('execution-parameters:' '{' executionRequirements = ExecutionRequirements '}' )?
+	('resource-provider:' '{' (resourceProvider += ResourceProvider (',' resourceProvider += ResourceProvider)*))? '}'	
+	('data-source' '{' (dataSource += InputDataSource (',' dataSource += InputDataSource)*) '}')?
+	('trigger:' '{' (triggers += Trigger (',' triggers += Trigger)*) '}')?
+;
+
+DataProcessingStep returns wfDSL::DataProcesssing:
+	'-' 'data-processing' 'step' name=ID 
+	('parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}')? 			
+	('execution-parameters:' '{' executionRequirements = ExecutionRequirements '}' )?
+	('resource-provider:' '{' (resourceProvider += ResourceProvider (',' resourceProvider += ResourceProvider)*) '}')? 	
+	('data-source' '{' (dataSource += InputDataSource (',' dataSource += InputDataSource)*) '}')?
+	('trigger:' '{' (triggers += Trigger (',' triggers += Trigger)*) '}')? 
+;
+
+CompositeStep returns wfDSL::CompositeStep:
+	'-'  'subpipeline' subpipeline=[wfDSL::SubPipeline]
+	('environment-parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}')? 		
+	('execution-parameters:' '{' executionRequirements = ExecutionRequirements '}' )?
+	('resource-provider:' '{' (resourceProvider += ResourceProvider (',' resourceProvider += ResourceProvider)*) '}')?
+	('trigger:' '{' (triggers += Trigger (',' triggers += Trigger)*) '}')? 
+		
+;
+
+
+// Triggers
+
+Trigger returns trigger::Trigger:
+	OneTimeTrigger | ScheduleTrigger | ExternalEventTrigger;
+	
+OneTimeTrigger returns trigger::OneTimeTrigger:
+	{trigger::OneTimeTrigger} 
+	'one-time'
+	(startTime = STRING)?; 
+		
+ScheduleTrigger returns trigger::ScheduleTrigger:
+	IntervalSchedule | CronSchedule;			
+
+ExternalEventTrigger returns trigger::ExternalEventTrigger:
+	{trigger::ExternalEventTrigger}
+	'external-event';	
+	
+IntervalSchedule returns trigger::IntervalSchedule:
+	{trigger::IntervalSchedule}
+	'interval-schedule'
+	('frequency:' frequency = TimeUnits)?
+	('interval:' interval = INT)?
+	('start-time:' startTime = STRING)?;
+	
+CronSchedule returns trigger::CronSchedule:
+	{trigger::CronSchedule}
+	'cron-schedule'
+	('start-time:' startTime = STRING)?
+	('cron:' cron = STRING)?;
+	
+
+
+// Input Datasource
+InputDataSource returns datasourceParameters::InputDataSource:
+	InputDataSourceFTP | 
+	InputDataSourceSFTP|
+	InputDataSourceDatabase | 
+	InputDataSourceMessageQueue |
+	InputDataSourceWebApi
+;
+
+
+InputDataSourceFTP returns datasourceParameters::FTP:
+	'InputDataSourceftp' name = ID '{' 'credential:' datasourcecredentials=BlockStorageCredentials '}'
+;
+
+InputDataSourceSFTP returns datasourceParameters::SFTP:
+	'InputDataSourceSftp' name = ID '{' 'credential:' datasourcecredentials=BlockStorageCredentials '}'	
+;
+
+InputDataSourceDatabase returns datasourceParameters::Database:
+	'InputDataSourceDatabase' name = ID '{' 'credential:' datasourcecredentials=DatabaseCredentials '}'
+;
+
+InputDataSourceMessageQueue returns datasourceParameters::MessageQueue:
+	'InputDataSourceMessageQueue' name = ID '{' 'credential:' datasourcecredentials=MessageQueueCredentials '}'
+;
+
+InputDataSourceWebApi returns datasourceParameters::WebApi:
+	'InputDataSourceWebApi' name = ID '{' 'credential:' datasourcecredentials=WebApiCredentials '}'
+;
+
+DatabaseCredentials returns datasourceParameters::DatabaseCredentials:
+	'database' '{' '}';
+
+BlockStorageCredentials returns datasourceParameters::BlockStorageCredential: 
+	'block-storage' '{' '}';
+
+WebApiCredentials returns datasourceParameters::WebApiCredentials:
+	'web-api' '{' '}';
+
+MessageQueueCredentials returns datasourceParameters::MessageQueueCredentials: 
+	'message-queue' '{' '}';
+
+
+
+// Resource Providers
+
+ResourceProvider returns resourceProvider::ResourceProvider:
+	(CloudProvider | EdgeProvider | FogProvider) name=ID 
+	'{' 
+		('providerLocation:' location = STRING) 
+		('mappingLocation:' mappingLocation=STRING) 
+	'}'
+;
+
+CloudProvider returns resourceProvider::CloudProvider : 'CloudProvider' ;
+EdgeProvider returns resourceProvider::EdgeProvider : 'EdgeProvider';
+FogProvider returns resourceProvider::FogProvider: 'FogProvider';
+
+
+
+// Execution Requirements
+
+ExecutionRequirements returns executionRequirements::ExecutionRequirement:
+	('hardRequirements:' hardRequirements = HardRequirement)?
+	('softRequirements:' softRequirements = SoftRequirement)?
+;
+
+
+SoftRequirement returns executionRequirements::SoftRequirements:
+	'empty:'
+;
+
+HardRequirement returns executionRequirements::HardRequirements:
+	(osOrImageReq=OsOrImageRequirements)?
+	(scaleRequirements=ScaleRequirements)?
+	(hardwareRequirement=HardwareRequirements)?
+	(scaleRequirements=ScaleRequirements)?
+	(securityRequirements=SecurityRequirements)?
+	(sloRequirements=ServiceLevelObjective)?
+;
+
+OsOrImageRequirements returns executionRequirements::OSOrImageRequirements:
+	ImageRequirement | OSRequirement
+;
+
+HardwareRequirements returns executionRequirements::HardwareRequirements:
+	(networkRequirements = NetworkRequirement)?
+	(qualitativeRequirements = QualitativeHardwareRequirements)?
+	(quantitativeRequirements = QuantitativeHardwareRequirements)?
+;
+
+
+NetworkRequirement returns executionRequirements::NetworkRequirements:
+	'networkRequirement:'
+		('min-bandwidth:' minBandwidth=EDouble)?
+		('max-bandwidth:' maxBandwidth=EDouble)?
+		('min-latency:' minLatency=INT)?
+		('max-latency:' maxLatency=INT)?
+;
+
+QualitativeHardwareRequirements returns executionRequirements::QualitativeHardwareRequirements:
+	'qualitativeRequirement:'
+		('min-benchmark:' minBenchmark=EDouble)?
+		('max-benchmark:' maxBenchmark=EDouble)?
+		('cpu-architecture:' cpuArchitecture = STRING)?
+		('gpu-architecture:' gpuArchitecture = STRING)?
+;
+
+QuantitativeHardwareRequirements returns executionRequirements::QuantitativeHardwareRequirements:
+	'quantitativeRequirement:'
+		( 'min-cpu:' minCpu = EDouble)?
+		( 'max-cpu:' maxCpu = EDouble)?
+		( 'min-ram-mb:' minRamMiB = INT)?
+		( 'max-ram-mb:' maxRamMiB = INT)?
+		( 'min-storage-mb:' minStorageMB = INT)?
+		( 'max-storage-mb:' maxStorageMB = INT)?
+		( 'cpu-frequency:'  cpuFrequency = EDouble)?
+		( 'cpu-no-core:' cpuNumberOfCores = INT)?
+		( 'gpu-availability:' gpuAvailability = BOOL_LITERAL)? 
+;
+
+ImageRequirement returns executionRequirements::ImageRequirements:
+	'imageRequirement:'
+	'image-id:' imageId = STRING
+;
+
+OSRequirement returns executionRequirements::OSRequirements:
+	'osRequirement:'
+		('os-type:' osType=STRING)?
+		('is-64:' is64os=BOOL_LITERAL)?
+;
+VerticalScaleRequirement returns executionRequirements::VerticalScaleRequirements :
+	'verticalScale:'
+		('min-cpu:' minCpu=EDouble)?
+		('max-cpu:' maxCpu=EDouble)?
+		('min-ram-mb:' minRamMiB=INT)?
+		('max-ram-mb:' maxRamMiB=INT)?
+		('min-cores:' minCores=INT)?
+		('max-cores:' maxCores=INT)?
+		('min-storage-mb:' minStorageMB=INT)?
+		('max-storage-mb:' maxStorageMB=INT)?
+;
+
+HorizontalScaleRequirement returns executionRequirements::HorizontalScaleRequirements:
+	'horizontalScale:'
+		('min-instance:' minInstance=INT)?
+		('max-instance:' maxInstance=INT)?
+;
+
+ScaleRequirements returns executionRequirements::ScaleRequirements:
+	(verticalScaleReq = VerticalScaleRequirement)?
+	(horizontalScaleReq = HorizontalScaleRequirement)?
+;
+
+SecurityRequirements returns executionRequirements::SecurityRequirement:
+	'security-requirement' name=ID '{'
+	('specification' specification=STRING)
+	'}'
+;
+
+ServiceLevelObjective returns executionRequirements::ServiceLevelObjective:
+	'service-objective'
+	customServiceLevel = ServiceLevelCondition
+;
+
+ServiceLevelCondition returns executionRequirements::ServiceLevelCondition:
+	 name=ID '{'
+//	 ('service-condition:' conditionName = STRING)
+ 	 ( 'operator:' comparisonOperator = STRING) //TODO must change to ComparisonOperator
+	 ( 'threshold:' threshold = EDouble)
+	 ( 'validity:' validity = STRING) ?
+	'}'
+;
+
+
+//ParameterValueTypes returns datasourceParameters::ParameterValueTypes: 
+//	value = STRING;
+
+
+enum TimeUnits returns wfDSL::TimeUnits:
+	SECOND | MINUTE | HOUR | DAY | WEEK | MONTH; 
+
+terminal BOOL_LITERAL returns ecore::EBoolean:
+	'true' | 'false';
+
+
+EDouble returns ecore::EDouble:
+	'-'? INT? '.' INT (('E'|'e') '-'? INT)?;
+	
+EBoolean returns ecore::EBoolean:
+	'true' | 'false';
+	

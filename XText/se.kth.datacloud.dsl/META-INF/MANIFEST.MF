@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: se.kth.datacloud.dsl
+Bundle-ManifestVersion: 2
+Bundle-Name: se.kth.datacloud.dsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: se.kth.datacloud.dsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: se.kth.datacloud.dsl.services,
+ se.kth.datacloud.dsl.parser.antlr,
+ se.kth.datacloud.dsl.parser.antlr.internal,
+ se.kth.datacloud.dsl.dsl.util,
+ se.kth.datacloud.dsl.serializer,
+ se.kth.datacloud.dsl.scoping,
+ se.kth.datacloud.dsl,
+ se.kth.datacloud.dsl.validation,
+ se.kth.datacloud.dsl.generator,
+ se.kth.datacloud.dsl.dsl,
+ se.kth.datacloud.dsl.dsl.impl
+Import-Package: org.apache.log4j

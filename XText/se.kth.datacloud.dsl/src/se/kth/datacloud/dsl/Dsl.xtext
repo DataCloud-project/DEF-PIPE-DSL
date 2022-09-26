@@ -10,29 +10,12 @@ import "http://www.example.org/wfDsl/ResourceProvider" as resourceProvider
 import "http://www.example.org/wfDsl/Trigger" as trigger
 
 
-PipelineTemplate returns wfDSL::PipelineTemplate: 
-	Pipeline | SubPipeline
-;
-
 Pipeline returns wfDSL::Pipeline:
 	'Pipeline'
 	name = ID
 	'{'		
 		('communicationMedium:' communicationMedium = CommunicationMedium)
 		('parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}' )? 		
-		('steps:'
-			(abstractstep += AbstractStep (abstractstep += AbstractStep)*)
-		)
-	'}'
-;
-
-
-SubPipeline returns wfDSL::SubPipeline:
-	'SubPipeline'
-	name = ID
-	'{'		
-		('communicationMedium:' communicationMedium = CommunicationMedium)
-		('parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}')? 		
 		('steps:'
 			(abstractstep += AbstractStep (abstractstep += AbstractStep)*)
 		)
@@ -59,7 +42,8 @@ AbstractStep returns wfDSL::AbstractStep:
 DataSink returns wfDSL::DataSink:
 	'-'  'data-sink' 'step' name=ID 
 	('parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}')? 		
-	('execution-parameters:' '{' executionRequirements = ExecutionRequirements '}' )?	
+//	('execution-parameters:' '{' executionRequirements = StepRequirementSet '}' )?	
+	('execution-parameters:' '{' stepRequirementSet = StepRequirementSet '}' )?	
 	('resource-provider:' '{' (resourceProvider += ResourceProvider (',' resourceProvider += ResourceProvider)*) '}')? 		
 	('data-source:' '{' (dataSource += InputDataSource (',' dataSource += InputDataSource)*) '}')? 		
 	('trigger:' '{' (triggers += Trigger (',' triggers += Trigger)*) '}')?	
@@ -68,7 +52,8 @@ DataSink returns wfDSL::DataSink:
 DataSource returns wfDSL::DataSource:
 	'-' 'data-source' 'step' name=ID
 	('parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}')? 			
-	('execution-parameters:' '{' executionRequirements = ExecutionRequirements '}' )?
+//	('execution-parameters:' '{' executionRequirements = StepRequirementSet '}' )?
+	('execution-parameters:' '{' stepRequirementSet = StepRequirementSet '}' )?	
 	('resource-provider:' '{' (resourceProvider += ResourceProvider (',' resourceProvider += ResourceProvider)*))? '}'	
 	('data-source' '{' (dataSource += InputDataSource (',' dataSource += InputDataSource)*) '}')?
 	('trigger:' '{' (triggers += Trigger (',' triggers += Trigger)*) '}')?
@@ -77,16 +62,17 @@ DataSource returns wfDSL::DataSource:
 DataProcessingStep returns wfDSL::DataProcesssing:
 	'-' 'data-processing' 'step' name=ID 
 	('parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}')? 			
-	('execution-parameters:' '{' executionRequirements = ExecutionRequirements '}' )?
+//	('execution-parameters:' '{' executionRequirements = StepRequirementSet '}' )?
+	('execution-parameters:' '{' stepRequirementSet = StepRequirementSet '}' )?	
 	('resource-provider:' '{' (resourceProvider += ResourceProvider (',' resourceProvider += ResourceProvider)*) '}')? 	
-	('data-source' '{' (dataSource += InputDataSource (',' dataSource += InputDataSource)*) '}')?
 	('trigger:' '{' (triggers += Trigger (',' triggers += Trigger)*) '}')? 
 ;
 
 CompositeStep returns wfDSL::CompositeStep:
-	'-'  'subpipeline' subpipeline=[wfDSL::SubPipeline]
+	'-'  'subpipeline' name=ID
 	('environment-parameters:' '{' (environmentParameters += EnvironmentParameters (',' environmentParameters += EnvironmentParameters)*) '}')? 		
-	('execution-parameters:' '{' executionRequirements = ExecutionRequirements '}' )?
+//	('execution-parameters:' '{' executionRequirements = StepRequirementSet '}' )?
+	('execution-parameters:' '{' stepRequirementSet = StepRequirementSet '}' )?	
 	('resource-provider:' '{' (resourceProvider += ResourceProvider (',' resourceProvider += ResourceProvider)*) '}')?
 	('trigger:' '{' (triggers += Trigger (',' triggers += Trigger)*) '}')? 
 		
@@ -174,7 +160,7 @@ MessageQueueCredentials returns datasourceParameters::MessageQueueCredentials:
 ResourceProvider returns resourceProvider::ResourceProvider:
 	(CloudProvider | EdgeProvider | FogProvider) name=ID 
 	'{' 
-		('providerLocation:' location = STRING) 
+		('providerName:' providerName = STRING) 
 		('mappingLocation:' mappingLocation=STRING) 
 	'}'
 ;
@@ -187,33 +173,20 @@ FogProvider returns resourceProvider::FogProvider: 'FogProvider';
 
 // Execution Requirements
 
-ExecutionRequirements returns executionRequirements::ExecutionRequirement:
-	('hardRequirements:' hardRequirements = HardRequirement)?
-	('softRequirements:' softRequirements = SoftRequirement)?
-;
-
-
-SoftRequirement returns executionRequirements::SoftRequirements:
-	'empty:'
-;
-
-HardRequirement returns executionRequirements::HardRequirements:
-	(osOrImageReq=OsOrImageRequirements)?
-	(scaleRequirements=ScaleRequirements)?
-	(hardwareRequirement=HardwareRequirements)?
-	(scaleRequirements=ScaleRequirements)?
-	(securityRequirements=SecurityRequirements)?
-	(sloRequirements=ServiceLevelObjective)?
-;
-
-OsOrImageRequirements returns executionRequirements::OSOrImageRequirements:
-	ImageRequirement | OSRequirement
-;
-
-HardwareRequirements returns executionRequirements::HardwareRequirements:
-	(networkRequirements = NetworkRequirement)?
-	(qualitativeRequirements = QualitativeHardwareRequirements)?
-	(quantitativeRequirements = QuantitativeHardwareRequirements)?
+StepRequirementSet returns executionRequirements::StepRequirementSet:
+	('hardRequirements:' 
+		(imageReq = ImageRequirement)?
+		(osReq = OSRequirement)?
+		(verticalScaleReq = VerticalScaleRequirement)?
+		(horizontalScaleReq = HorizontalScaleRequirement)?
+		(networkReq = NetworkRequirement)?
+		(qualitativeReq = QualitativeHardwareRequirements)?
+		(quantitativeReq = QuantitativeHardwareRequirements)?
+		(securityReq = SecurityRequirements)?
+		(sloReq = ServiceLevelObjective)?
+	)?
+	
+	('softRequirements:' 'empty')?
 ;
 
 
@@ -274,12 +247,8 @@ HorizontalScaleRequirement returns executionRequirements::HorizontalScaleRequire
 		('max-instance:' maxInstance=INT)?
 ;
 
-ScaleRequirements returns executionRequirements::ScaleRequirements:
-	(verticalScaleReq = VerticalScaleRequirement)?
-	(horizontalScaleReq = HorizontalScaleRequirement)?
-;
 
-SecurityRequirements returns executionRequirements::SecurityRequirement:
+SecurityRequirements returns executionRequirements::SecurityRequirements:
 	'security-requirement' name=ID '{'
 	('specification' specification=STRING)
 	'}'

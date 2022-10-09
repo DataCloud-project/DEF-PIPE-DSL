@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated datacloud-dsl-base -->
+      <package
+            uri="http://datacloud.kth.se/dcdsl"
+            class="se.kth.datacloud.dsl.dsl.DslPackage"
+            genModel="model/datacloud-dsl-base.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated datacloud-dsl-base -->
+      <package
+            uri="http://datacloud.kth.se/dcdsl/EnvironmentVariables"
+            class="se.kth.datacloud.dsl.EnvironmentVariables.EnvironmentVariablesPackage"
+            genModel="model/datacloud-dsl-base.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated datacloud-dsl-base -->
+      <package
+            uri="http://datacloud.kth.se/dcdsl/Triggers"
+            class="se.kth.datacloud.dsl.Triggers.TriggersPackage"
+            genModel="model/datacloud-dsl-base.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated datacloud-dsl-base -->
+      <package
+            uri="http://datacloud.kth.se/dcdsl/ControlParameters"
+            class="se.kth.datacloud.dsl.ControlParameters.ControlParametersPackage"
+            genModel="model/datacloud-dsl-base.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated datacloud-dsl-base -->
+      <package
+            uri="http://datacloud.kth.se/dcdsl/ExecutionRequirements"
+            class="se.kth.datacloud.dsl.ExecutionRequirements.ExecutionRequirementsPackage"
+            genModel="model/datacloud-dsl-base.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated datacloud-dsl-base -->
+      <package
+            uri="http://datacloud.kth.se/dcdsl/ResourceProvider"
+            class="se.kth.datacloud.dsl.ResourceProviders.ResourceProvidersPackage"
+            genModel="model/datacloud-dsl-base.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated datacloud-dsl-base -->
+      <package
+            uri="http://datacloud.kth.se/dcdsl/DataSourceParameters"
+            class="se.kth.datacloud.dsl.DataSourceParameters.DataSourceParametersPackage"
+            genModel="model/datacloud-dsl-base.genmodel"/>
+   </extension>
+
+</plugin>

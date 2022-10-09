@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ResourceProviders" nsURI="http://datacloud.kth.se/dcdsl/ResourceProvider"
+    nsPrefix="ResourceProviders">
+  <eClassifiers xsi:type="ecore:EClass" name="ResourceProvider" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="providerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CloudProvider" eSuperTypes="#//ResourceProvider"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FogProvider" eSuperTypes="#//ResourceProvider"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EdgeProvider" eSuperTypes="#//ResourceProvider"/>
+</ecore:EPackage>

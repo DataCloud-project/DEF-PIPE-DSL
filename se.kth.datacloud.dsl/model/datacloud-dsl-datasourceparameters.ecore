@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="DataSourceParameters" nsURI="http://datacloud.kth.se/dcdsl/DataSourceParameters"
+    nsPrefix="DataSourceParameters">
+  <eClassifiers xsi:type="ecore:EClass" name="InputDataSource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ParameterValueTypes"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datasourcecredentials"
+        lowerBound="1" eType="#//DataSourceCredentials" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterValueTypes"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataSourceCredentials" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockStorage" abstract="true" eSuperTypes="#//InputDataSource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Database" abstract="true" eSuperTypes="#//InputDataSource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MessageQueue" abstract="true" eSuperTypes="#//InputDataSource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WebApi" abstract="true" eSuperTypes="#//InputDataSource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WebApiCredentials" abstract="true" eSuperTypes="#//DataSourceCredentials">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MessageQueueCredentials" abstract="true"
+      eSuperTypes="#//DataSourceCredentials"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DatabaseCredentials" abstract="true"
+      eSuperTypes="#//DataSourceCredentials"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockStorageCredentials" abstract="true"
+      eSuperTypes="#//DataSourceCredentials"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FTP" abstract="true" eSuperTypes="#//InputDataSource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SFTP" abstract="true" eSuperTypes="#//FTP"/>
+</ecore:EPackage>

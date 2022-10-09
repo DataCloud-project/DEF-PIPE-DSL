@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ControlParameters" nsURI="http://datacloud.kth.se/dcdsl/ControlParameters"
+    nsPrefix="ControlParameters">
+  <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//AbstractCondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparatorOperator" eType="ecore:EEnum datacloud-dsl-base.ecore#//ComparisonOperatorType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceProcessingScriptName"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral="None"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeCondition" eSuperTypes="#//AbstractCondition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
+        eType="#//AbstractCondition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EEnum datacloud-dsl-base.ecore#//LogicalOperatorType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PreCondition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStepList" lowerBound="1"
+        upperBound="-1" eType="#//ConditionStepPair" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EEnum datacloud-dsl-base.ecore#//LogicalOperatorType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PostCondition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionStepList" lowerBound="1"
+        upperBound="-1" eType="#//ConditionStepPair" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionStepPair">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//AbstractCondition"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="step" eType="ecore:EClass datacloud-dsl-base.ecore#//AbstractStep"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WhileLooop" eSuperTypes="#//Loop">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="atLeastOnce" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//AbstractCondition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForLoop" eSuperTypes="#//Loop">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//OperatorType"
+        defaultValueLiteral="INCREMENT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Loop" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionSet">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pre" eType="#//PreCondition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="post" eType="#//PostCondition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="OperatorType">
+    <eLiterals name="INCREMENT"/>
+    <eLiterals name="DECREMENT" value="1"/>
+    <eLiterals name="DIVISION" value="2"/>
+    <eLiterals name="MULTIPLY" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlParemeter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loop" eType="#//Loop"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//ConditionSet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractCondition" abstract="true"/>
+</ecore:EPackage>

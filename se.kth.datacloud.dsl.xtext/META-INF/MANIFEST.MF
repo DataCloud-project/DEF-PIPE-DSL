@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: se.kth.datacloud.dsl.xtext
+Bundle-ManifestVersion: 2
+Bundle-Name: se.kth.datacloud.dsl.xtext
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: se.kth.datacloud.dsl.xtext; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: se.kth.datacloud.dsl,
+ org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: se.kth.datacloud.dsl.xtext.parser.antlr,
+ se.kth.datacloud.dsl.xtext.generator,
+ se.kth.datacloud.dsl.xtext.parser.antlr.internal,
+ se.kth.datacloud.dsl.xtext.serializer,
+ se.kth.datacloud.dsl.xtext.services,
+ se.kth.datacloud.dsl.xtext,
+ se.kth.datacloud.dsl.xtext.scoping,
+ se.kth.datacloud.dsl.xtext.formatting2,
+ se.kth.datacloud.dsl.xtext.validation
+Import-Package: org.apache.log4j

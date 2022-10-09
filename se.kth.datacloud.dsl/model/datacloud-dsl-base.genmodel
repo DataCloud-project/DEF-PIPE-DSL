@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/se.kth.datacloud.dsl/src" modelPluginID="se.kth.datacloud.dsl"
+    modelName="Datacloud-dsl-base" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>datacloud-dsl-base.ecore</foreignModel>
+  <genPackages prefix="Dsl" basePackage="se.kth.datacloud.dsl" disposableProviderFactory="true"
+      ecorePackage="datacloud-dsl-base.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="datacloud-dsl-base.ecore#//CommunicationMediumTypes">
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//CommunicationMediumTypes/MESSAGE_QUEUE"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//CommunicationMediumTypes/DISTRIBUTED_FILE_SYSTEM"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//CommunicationMediumTypes/WEB_SERVICE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="datacloud-dsl-base.ecore#//TimeUnits">
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//TimeUnits/SECOND"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//TimeUnits/MINUTE"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//TimeUnits/HOUR"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//TimeUnits/DAY"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//TimeUnits/WEEK"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//TimeUnits/MONTH"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="datacloud-dsl-base.ecore#//DeploymentLayers">
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//DeploymentLayers/EDGE"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//DeploymentLayers/FOG"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//DeploymentLayers/CLOUD"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="datacloud-dsl-base.ecore#//LogicalOperatorType">
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//LogicalOperatorType/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//LogicalOperatorType/XOR"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//LogicalOperatorType/OR"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="datacloud-dsl-base.ecore#//ComparisonOperatorType">
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//ComparisonOperatorType/EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//ComparisonOperatorType/LESS_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//ComparisonOperatorType/GREATER_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//ComparisonOperatorType/NOT_EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//ComparisonOperatorType/EQUAL_LESS_THAN"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-base.ecore#//ComparisonOperatorType/EQUAL_GREATER_THAN"/>
+    </genEnums>
+    <genClasses ecoreClass="datacloud-dsl-base.ecore#//Pipeline">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-base.ecore#//Pipeline/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//Pipeline/steps"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//Pipeline/communicationMedium"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//Pipeline/environmentVariables"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-base.ecore#//AbstractStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-base.ecore#//AbstractStep/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//AbstractStep/triggers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//AbstractStep/previous"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//AbstractStep/controlParemeter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//AbstractStep/executionRequirementSet"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//AbstractStep/resourceProvider"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//AbstractStep/environmentVariables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//AbstractStep/implementation"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-base.ecore#//CommunicationMedium">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-base.ecore#//CommunicationMedium/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-base.ecore#//StepImplementation"/>
+    <genClasses ecoreClass="datacloud-dsl-base.ecore#//ContainerImplementation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-base.ecore#//ContainerImplementation/imageName"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-base.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-base.ecore#//Parameter/name"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-base.ecore#//CompositeStep">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//CompositeStep/steps"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-base.ecore#//StepTemplate"/>
+    <genClasses ecoreClass="datacloud-dsl-base.ecore#//ParameterGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//ParameterGroup/parameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-base.ecore#//ParameterGroup/parameterOperator"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-base.ecore#//DataProcesssing"/>
+    <genClasses ecoreClass="datacloud-dsl-base.ecore#//DataSource">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//DataSource/dataSource"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-base.ecore#//DataSink">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-base.ecore#//DataSink/dataTarget"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="EnvironmentVariables" basePackage="se.kth.datacloud.dsl" disposableProviderFactory="true"
+      ecorePackage="datacloud-dsl-environmentvariables.ecore#/">
+    <genClasses ecoreClass="datacloud-dsl-environmentvariables.ecore#//EnvironmentVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-environmentvariables.ecore#//EnvironmentVariable/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-environmentvariables.ecore#//EnvironmentVariable/name"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="Triggers" basePackage="se.kth.datacloud.dsl" disposableProviderFactory="true"
+      ecorePackage="datacloud-dsl-trigger.ecore#/">
+    <genClasses ecoreClass="datacloud-dsl-trigger.ecore#//ScheduleTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-trigger.ecore#//ScheduleTrigger/startTime"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-trigger.ecore#//Trigger"/>
+    <genClasses ecoreClass="datacloud-dsl-trigger.ecore#//ExternalEventTrigger"/>
+    <genClasses ecoreClass="datacloud-dsl-trigger.ecore#//OneTimeTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-trigger.ecore#//OneTimeTrigger/startTime"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-trigger.ecore#//CronScheduleTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-trigger.ecore#//CronScheduleTrigger/cronExpression"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-trigger.ecore#//IntervalScheduleTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-trigger.ecore#//IntervalScheduleTrigger/frequency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-trigger.ecore#//IntervalScheduleTrigger/interval"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-trigger.ecore#//PollingTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-trigger.ecore#//PollingTrigger/numberOfRetries"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-trigger.ecore#//PollingTrigger/interval"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-trigger.ecore#//PollingTrigger/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-trigger.ecore#//PollDatabaseTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-trigger.ecore#//PollDatabaseTrigger/queryScript"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-trigger.ecore#//PollDatabaseTrigger/credentials"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-trigger.ecore#//PollMessageQueueTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-trigger.ecore#//PollMessageQueueTrigger/consumerQueueName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-trigger.ecore#//PollMessageQueueTrigger/credentials"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-trigger.ecore#//PollWebServiceTrigger">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-trigger.ecore#//PollWebServiceTrigger/credentials"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="ControlParameters" basePackage="se.kth.datacloud.dsl" disposableProviderFactory="true"
+      ecorePackage="datacloud-dsl-controlparameters.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="datacloud-dsl-controlparameters.ecore#//OperatorType">
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-controlparameters.ecore#//OperatorType/INCREMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-controlparameters.ecore#//OperatorType/DECREMENT"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-controlparameters.ecore#//OperatorType/DIVISION"/>
+      <genEnumLiterals ecoreEnumLiteral="datacloud-dsl-controlparameters.ecore#//OperatorType/MULTIPLY"/>
+    </genEnums>
+    <genClasses ecoreClass="datacloud-dsl-controlparameters.ecore#//Condition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//Condition/comparatorOperator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//Condition/source"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//Condition/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//Condition/sourceProcessingScriptName"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-controlparameters.ecore#//CompositeCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-controlparameters.ecore#//CompositeCondition/conditions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//CompositeCondition/operator"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-controlparameters.ecore#//PreCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-controlparameters.ecore#//PreCondition/conditionStepList"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//PreCondition/type"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-controlparameters.ecore#//PostCondition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-controlparameters.ecore#//PostCondition/conditionStepList"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-controlparameters.ecore#//ConditionStepPair">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-controlparameters.ecore#//ConditionStepPair/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datacloud-dsl-controlparameters.ecore#//ConditionStepPair/step"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-controlparameters.ecore#//WhileLooop">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//WhileLooop/atLeastOnce"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-controlparameters.ecore#//WhileLooop/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-controlparameters.ecore#//ForLoop">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//ForLoop/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//ForLoop/to"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//ForLoop/stepSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-controlparameters.ecore#//ForLoop/operator"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-controlparameters.ecore#//Loop"/>
+    <genClasses ecoreClass="datacloud-dsl-controlparameters.ecore#//ConditionSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datacloud-dsl-controlparameters.ecore#//ConditionSet/pre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datacloud-dsl-controlparameters.ecore#//ConditionSet/post"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-controlparameters.ecore#//ControlParemeter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datacloud-dsl-controlparameters.ecore#//ControlParemeter/loop"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datacloud-dsl-controlparameters.ecore#//ControlParemeter/condition"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-controlparameters.ecore#//AbstractCondition"/>
+  </genPackages>
+  <genPackages prefix="ExecutionRequirements" basePackage="se.kth.datacloud.dsl" disposableProviderFactory="true"
+      ecorePackage="datacloud-dsl-executionrequirements.ecore#/">
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet/serviceLevelObjective"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet/securityRequirement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet/horizontalScaleRequirement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet/verticalScaleRequirement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet/osRequirement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet/imageRequirement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet/qualitativeHardwareRequirement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet/quantitativeHardwareRequirement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet/networkRequirement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet/optimizationRequirement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-executionrequirements.ecore#//HardRequirement"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-executionrequirements.ecore#//SoftRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//SoftRequirement/priority"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//Metric">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//Metric/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//Metric/valueDirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//Metric/isVariable"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//OptimizationRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//OptimizationRequirement/optimisationFunction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//OptimizationRequirement/metric"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-executionrequirements.ecore#//HardwareRequirement"/>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//ServiceLevelCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//ServiceLevelCondition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//ServiceLevelCondition/comparisonOperator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//ServiceLevelCondition/threshold"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//ServiceLevelCondition/validity"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//HorizontalScaleRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//HorizontalScaleRequirement/minInstance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//HorizontalScaleRequirement/maxInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//SecurityRequirement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//SecurityRequirement/securityParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//OSRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//OSRequirement/osType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//OSRequirement/is64os"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//ServiceLevelObjective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-executionrequirements.ecore#//ServiceLevelObjective/customServiceLevel"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//SecurityControl">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//SecurityControl/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//SecurityControl/specification"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//QuantitativeHardwareRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QuantitativeHardwareRequirement/minCpu"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QuantitativeHardwareRequirement/maxCpu"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QuantitativeHardwareRequirement/minRamMiB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QuantitativeHardwareRequirement/maxRamMiB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QuantitativeHardwareRequirement/minStorageMB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QuantitativeHardwareRequirement/maxStorageMB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QuantitativeHardwareRequirement/cpuFrequency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QuantitativeHardwareRequirement/cpuNumberOfCores"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QuantitativeHardwareRequirement/gpuAvailability"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-executionrequirements.ecore#//ScaleRequirement"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-executionrequirements.ecore#//OSOrImageRequirement"/>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//ImageRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//ImageRequirement/imageId"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//VerticalScaleRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//VerticalScaleRequirement/minCpu"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//VerticalScaleRequirement/maxCpu"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//VerticalScaleRequirement/minRamMiB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//VerticalScaleRequirement/maxRamMiB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//VerticalScaleRequirement/minCores"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//VerticalScaleRequirement/maxCores"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//VerticalScaleRequirement/minStorageMB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//VerticalScaleRequirement/maxStorageMB"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//QualitativeHardwareRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QualitativeHardwareRequirement/minBenchmark"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QualitativeHardwareRequirement/maxBenchmark"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QualitativeHardwareRequirement/cpuArchitecture"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//QualitativeHardwareRequirement/gpuArchitecture"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-executionrequirements.ecore#//NetworkRequirement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//NetworkRequirement/minBandwidth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//NetworkRequirement/maxBandwidth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//NetworkRequirement/minLatency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-executionrequirements.ecore#//NetworkRequirement/maxLatency"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-executionrequirements.ecore#//ExecutionRequirement"/>
+  </genPackages>
+  <genPackages prefix="ResourceProviders" basePackage="se.kth.datacloud.dsl" disposableProviderFactory="true"
+      ecorePackage="datacloud-dsl-resourceprovider.ecore#/">
+    <genClasses image="false" ecoreClass="datacloud-dsl-resourceprovider.ecore#//ResourceProvider">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-resourceprovider.ecore#//ResourceProvider/providerName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-resourceprovider.ecore#//ResourceProvider/location"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-resourceprovider.ecore#//CloudProvider"/>
+    <genClasses ecoreClass="datacloud-dsl-resourceprovider.ecore#//FogProvider"/>
+    <genClasses ecoreClass="datacloud-dsl-resourceprovider.ecore#//EdgeProvider"/>
+  </genPackages>
+  <genPackages prefix="DataSourceParameters" basePackage="se.kth.datacloud.dsl" disposableProviderFactory="true"
+      ecorePackage="datacloud-dsl-datasourceparameters.ecore#/">
+    <genClasses ecoreClass="datacloud-dsl-datasourceparameters.ecore#//InputDataSource">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-datasourceparameters.ecore#//InputDataSource/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datacloud-dsl-datasourceparameters.ecore#//InputDataSource/datasourcecredentials"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-datasourceparameters.ecore#//InputDataSource/name"/>
+    </genClasses>
+    <genClasses ecoreClass="datacloud-dsl-datasourceparameters.ecore#//ParameterValueTypes"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//DataSourceCredentials"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//BlockStorage"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//Database"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//MessageQueue"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//WebApi"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//WebApiCredentials">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datacloud-dsl-datasourceparameters.ecore#//WebApiCredentials/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//MessageQueueCredentials"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//DatabaseCredentials"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//BlockStorageCredentials"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//FTP"/>
+    <genClasses image="false" ecoreClass="datacloud-dsl-datasourceparameters.ecore#//SFTP"/>
+  </genPackages>
+</genmodel:GenModel>

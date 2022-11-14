@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Triggers" nsURI="http://datacloud.kth.se/dcdsl/Triggers" nsPrefix="Triggers">
+  <eClassifiers xsi:type="ecore:EClass" name="ScheduleTrigger" eSuperTypes="#//Trigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Trigger" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExternalEventTrigger" eSuperTypes="#//Trigger"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OneTimeTrigger" eSuperTypes="#//Trigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CronScheduleTrigger" eSuperTypes="#//ScheduleTrigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cronExpression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntervalScheduleTrigger" eSuperTypes="#//ScheduleTrigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="frequency" eType="ecore:EEnum datacloud-dsl-base.ecore#//TimeUnits"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PollingTrigger" abstract="true" eSuperTypes="#//Trigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numberOfRetries" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="interval" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="ecore:EClass datacloud-dsl-controlparameters.ecore#//AbstractCondition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PollDatabaseTrigger" eSuperTypes="#//PollingTrigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="queryScript" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="credentials" eType="ecore:EClass datacloud-dsl-datasourceparameters.ecore#//DatabaseCredentials"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PollMessageQueueTrigger" eSuperTypes="#//PollingTrigger">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="consumerQueueName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="credentials" eType="ecore:EClass datacloud-dsl-datasourceparameters.ecore#//MessageQueueCredentials"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PollWebServiceTrigger" eSuperTypes="#//PollingTrigger">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="credentials" eType="ecore:EClass datacloud-dsl-datasourceparameters.ecore#//WebApiCredentials"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

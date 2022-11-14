@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ExecutionRequirements" nsURI="http://datacloud.kth.se/dcdsl/ExecutionRequirements"
+    nsPrefix="ExecutionRequirements">
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionRequirementSet">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceLevelObjective"
+        eType="#//ServiceLevelObjective" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="securityRequirement" eType="#//SecurityRequirement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="horizontalScaleRequirement"
+        eType="#//HorizontalScaleRequirement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="verticalScaleRequirement"
+        eType="#//VerticalScaleRequirement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="osRequirement" eType="#//OSRequirement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="imageRequirement" eType="#//ImageRequirement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualitativeHardwareRequirement"
+        eType="#//QualitativeHardwareRequirement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="quantitativeHardwareRequirement"
+        eType="#//QuantitativeHardwareRequirement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="networkRequirement" eType="#//NetworkRequirement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="optimizationRequirement"
+        eType="#//OptimizationRequirement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HardRequirement" abstract="true" eSuperTypes="#//ExecutionRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SoftRequirement" abstract="true" eSuperTypes="#//ExecutionRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="priority" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Metric">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueDirection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EShort"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isVariable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OptimizationRequirement" eSuperTypes="#//SoftRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="optimisationFunction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="MINIMIZE"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metric" lowerBound="1"
+        eType="#//Metric"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HardwareRequirement" abstract="true"
+      eSuperTypes="#//HardRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceLevelCondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comparisonOperator" eType="ecore:EEnum datacloud-dsl-base.ecore#//ComparisonOperatorType"
+        defaultValueLiteral="GREATER_THAN"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="threshold" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="validity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HorizontalScaleRequirement" eSuperTypes="#//ScaleRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minInstance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxInstance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityRequirement" eSuperTypes="#//HardRequirement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="securityParameters" lowerBound="1"
+        upperBound="-1" eType="#//SecurityControl" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OSRequirement" eSuperTypes="#//OSOrImageRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="osType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="is64os" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceLevelObjective" eSuperTypes="#//HardRequirement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="customServiceLevel" lowerBound="1"
+        eType="#//ServiceLevelCondition" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityControl">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QuantitativeHardwareRequirement" eSuperTypes="#//HardwareRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minCpu" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCpu" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minRamMiB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxRamMiB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minStorageMB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxStorageMB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuFrequency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuNumberOfCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gpuAvailability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ScaleRequirement" abstract="true" eSuperTypes="#//HardRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OSOrImageRequirement" abstract="true"
+      eSuperTypes="#//HardRequirement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageRequirement" eSuperTypes="#//OSOrImageRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VerticalScaleRequirement" eSuperTypes="#//ScaleRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minCpu" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCpu" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minRamMiB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxRamMiB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minStorageMB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxStorageMB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QualitativeHardwareRequirement" eSuperTypes="#//HardwareRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minBenchmark" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxBenchmark" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuArchitecture" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gpuArchitecture" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NetworkRequirement" eSuperTypes="#//HardwareRequirement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minBandwidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="0.0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxBandwidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minLatency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxLatency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionRequirement" abstract="true"/>
+</ecore:EPackage>

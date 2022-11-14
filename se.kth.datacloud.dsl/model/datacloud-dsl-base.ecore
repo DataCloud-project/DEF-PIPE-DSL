@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dsl" nsURI="http://datacloud.kth.se/dcdsl" nsPrefix="dsl">
+  <eClassifiers xsi:type="ecore:EClass" name="Pipeline">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1" upperBound="-1"
+        eType="#//AbstractStep" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="communicationMedium" eType="#//CommunicationMedium"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="environmentVariables" upperBound="-1"
+        eType="ecore:EClass datacloud-dsl-environmentvariables.ecore#//EnvironmentVariable"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractStep" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
+        eType="ecore:EClass datacloud-dsl-trigger.ecore#//Trigger" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="previous" unique="false"
+        upperBound="-1" eType="#//AbstractStep"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controlParemeter" lowerBound="1"
+        eType="ecore:EClass datacloud-dsl-controlparameters.ecore#//ControlParemeter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executionRequirementSet"
+        eType="ecore:EClass datacloud-dsl-executionrequirements.ecore#//ExecutionRequirementSet"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourceProvider" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass datacloud-dsl-resourceprovider.ecore#//ResourceProvider"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="environmentVariables" upperBound="-1"
+        eType="ecore:EClass datacloud-dsl-environmentvariables.ecore#//EnvironmentVariable"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//StepImplementation"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CommunicationMedium">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//CommunicationMediumTypes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StepImplementation" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContainerImplementation" eSuperTypes="#//StepImplementation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CommunicationMediumTypes">
+    <eLiterals name="MESSAGE_QUEUE" literal="MESSAGE_QUEUE"/>
+    <eLiterals name="DISTRIBUTED_FILE_SYSTEM" value="1" literal="DISTRIBUTED_FILE_SYSTEM"/>
+    <eLiterals name="WEB_SERVICE" value="2" literal="WEB_SERVICE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeUnits">
+    <eLiterals name="SECOND" literal="SECOND"/>
+    <eLiterals name="MINUTE" value="1" literal="MINUTE"/>
+    <eLiterals name="HOUR" value="2" literal="HOUR"/>
+    <eLiterals name="DAY" value="3" literal="DAY"/>
+    <eLiterals name="WEEK" value="4" literal="WEEK"/>
+    <eLiterals name="MONTH" value="5" literal="MONTH"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DeploymentLayers">
+    <eLiterals name="EDGE" value="1"/>
+    <eLiterals name="FOG" value="1"/>
+    <eLiterals name="CLOUD" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeStep" eSuperTypes="#//AbstractStep">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1" upperBound="-1"
+        eType="#//AbstractStep" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StepTemplate" abstract="true" eSuperTypes="#//AbstractStep"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterGroup">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameterOperator" eType="#//LogicalOperatorType"
+        defaultValueLiteral="AND"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LogicalOperatorType">
+    <eLiterals name="AND"/>
+    <eLiterals name="XOR" value="1"/>
+    <eLiterals name="OR" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ComparisonOperatorType">
+    <eLiterals name="EQUAL"/>
+    <eLiterals name="LESS_THAN" value="1"/>
+    <eLiterals name="GREATER_THAN" value="2"/>
+    <eLiterals name="NOT_EQUAL" value="3" literal="NOT_EQUAL"/>
+    <eLiterals name="EQUAL_LESS_THAN" value="4"/>
+    <eLiterals name="EQUAL_GREATER_THAN" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataProcesssing" eSuperTypes="#//StepTemplate"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataSource" eSuperTypes="#//StepTemplate">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataSource" eType="ecore:EClass datacloud-dsl-datasourceparameters.ecore#//InputDataSource"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataSink" eSuperTypes="#//StepTemplate">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataTarget" eType="ecore:EClass datacloud-dsl-datasourceparameters.ecore#//InputDataSource"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

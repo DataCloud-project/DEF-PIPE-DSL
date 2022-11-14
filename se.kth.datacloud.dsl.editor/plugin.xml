@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated datacloud-dsl-base -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="se.kth.datacloud.dsl.dsl.presentation.DslModelWizardID"
+            name="%_UI_DslModelWizard_label"
+            class="se.kth.datacloud.dsl.dsl.presentation.DslModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DslModelFile.gif">
+         <description>%_UI_DslModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated datacloud-dsl-base -->
+      <editor
+            id="se.kth.datacloud.dsl.dsl.presentation.DslEditorID"
+            name="%_UI_DslEditor_label"
+            icon="icons/full/obj16/DslModelFile.gif"
+            extensions="dsl"
+            class="se.kth.datacloud.dsl.dsl.presentation.DslEditor"
+            contributorClass="se.kth.datacloud.dsl.dsl.presentation.DslActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated datacloud-dsl-base -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="se.kth.datacloud.dsl.EnvironmentVariables.presentation.EnvironmentVariablesModelWizardID"
+            name="%_UI_EnvironmentVariablesModelWizard_label"
+            class="se.kth.datacloud.dsl.EnvironmentVariables.presentation.EnvironmentVariablesModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/EnvironmentVariablesModelFile.gif">
+         <description>%_UI_EnvironmentVariablesModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated datacloud-dsl-base -->
+      <editor
+            id="se.kth.datacloud.dsl.EnvironmentVariables.presentation.EnvironmentVariablesEditorID"
+            name="%_UI_EnvironmentVariablesEditor_label"
+            icon="icons/full/obj16/EnvironmentVariablesModelFile.gif"
+            extensions="environmentvariables"
+            class="se.kth.datacloud.dsl.EnvironmentVariables.presentation.EnvironmentVariablesEditor"
+            contributorClass="se.kth.datacloud.dsl.EnvironmentVariables.presentation.EnvironmentVariablesActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated datacloud-dsl-base -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="se.kth.datacloud.dsl.Triggers.presentation.TriggersModelWizardID"
+            name="%_UI_TriggersModelWizard_label"
+            class="se.kth.datacloud.dsl.Triggers.presentation.TriggersModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TriggersModelFile.gif">
+         <description>%_UI_TriggersModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated datacloud-dsl-base -->
+      <editor
+            id="se.kth.datacloud.dsl.Triggers.presentation.TriggersEditorID"
+            name="%_UI_TriggersEditor_label"
+            icon="icons/full/obj16/TriggersModelFile.gif"
+            extensions="triggers"
+            class="se.kth.datacloud.dsl.Triggers.presentation.TriggersEditor"
+            contributorClass="se.kth.datacloud.dsl.Triggers.presentation.TriggersActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated datacloud-dsl-base -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="se.kth.datacloud.dsl.ControlParameters.presentation.ControlParametersModelWizardID"
+            name="%_UI_ControlParametersModelWizard_label"
+            class="se.kth.datacloud.dsl.ControlParameters.presentation.ControlParametersModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ControlParametersModelFile.gif">
+         <description>%_UI_ControlParametersModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated datacloud-dsl-base -->
+      <editor
+            id="se.kth.datacloud.dsl.ControlParameters.presentation.ControlParametersEditorID"
+            name="%_UI_ControlParametersEditor_label"
+            icon="icons/full/obj16/ControlParametersModelFile.gif"
+            extensions="controlparameters"
+            class="se.kth.datacloud.dsl.ControlParameters.presentation.ControlParametersEditor"
+            contributorClass="se.kth.datacloud.dsl.ControlParameters.presentation.ControlParametersActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated datacloud-dsl-base -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="se.kth.datacloud.dsl.ExecutionRequirements.presentation.ExecutionRequirementsModelWizardID"
+            name="%_UI_ExecutionRequirementsModelWizard_label"
+            class="se.kth.datacloud.dsl.ExecutionRequirements.presentation.ExecutionRequirementsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ExecutionRequirementsModelFile.gif">
+         <description>%_UI_ExecutionRequirementsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated datacloud-dsl-base -->
+      <editor
+            id="se.kth.datacloud.dsl.ExecutionRequirements.presentation.ExecutionRequirementsEditorID"
+            name="%_UI_ExecutionRequirementsEditor_label"
+            icon="icons/full/obj16/ExecutionRequirementsModelFile.gif"
+            extensions="executionrequirements"
+            class="se.kth.datacloud.dsl.ExecutionRequirements.presentation.ExecutionRequirementsEditor"
+            contributorClass="se.kth.datacloud.dsl.ExecutionRequirements.presentation.ExecutionRequirementsActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated datacloud-dsl-base -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="se.kth.datacloud.dsl.ResourceProviders.presentation.ResourceProvidersModelWizardID"
+            name="%_UI_ResourceProvidersModelWizard_label"
+            class="se.kth.datacloud.dsl.ResourceProviders.presentation.ResourceProvidersModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ResourceProvidersModelFile.gif">
+         <description>%_UI_ResourceProvidersModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated datacloud-dsl-base -->
+      <editor
+            id="se.kth.datacloud.dsl.ResourceProviders.presentation.ResourceProvidersEditorID"
+            name="%_UI_ResourceProvidersEditor_label"
+            icon="icons/full/obj16/ResourceProvidersModelFile.gif"
+            extensions="resourceproviders"
+            class="se.kth.datacloud.dsl.ResourceProviders.presentation.ResourceProvidersEditor"
+            contributorClass="se.kth.datacloud.dsl.ResourceProviders.presentation.ResourceProvidersActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated datacloud-dsl-base -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="se.kth.datacloud.dsl.DataSourceParameters.presentation.DataSourceParametersModelWizardID"
+            name="%_UI_DataSourceParametersModelWizard_label"
+            class="se.kth.datacloud.dsl.DataSourceParameters.presentation.DataSourceParametersModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/DataSourceParametersModelFile.gif">
+         <description>%_UI_DataSourceParametersModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated datacloud-dsl-base -->
+      <editor
+            id="se.kth.datacloud.dsl.DataSourceParameters.presentation.DataSourceParametersEditorID"
+            name="%_UI_DataSourceParametersEditor_label"
+            icon="icons/full/obj16/DataSourceParametersModelFile.gif"
+            extensions="datasourceparameters"
+            class="se.kth.datacloud.dsl.DataSourceParameters.presentation.DataSourceParametersEditor"
+            contributorClass="se.kth.datacloud.dsl.DataSourceParameters.presentation.DataSourceParametersActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

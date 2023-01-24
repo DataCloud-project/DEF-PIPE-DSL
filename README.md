@@ -46,4 +46,4 @@ Follow these steps to load the EMF project and open the EMF diagrams:
 
 The grammar of the DSL is defined according to [Xtext](https://www.eclipse.org/Xtext/) and is located at 
 
-* https://github.com/DataCloud-project/DEF-PIPE-DSL/blob/master/XText/se.kth.datacloud.dsl/src/se/kth/datacloud/dsl/Dsl.xtext 
+* https://github.com/DataCloud-project/DEF-PIPE-DSL/blob/master/se.kth.datacloud.dsl.xtext/src/se/kth/datacloud/dsl/xtext/DataCloudDSL.xtext 
